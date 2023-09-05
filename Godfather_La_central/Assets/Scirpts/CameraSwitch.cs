@@ -84,6 +84,7 @@ public class CameraSwitch : MonoBehaviour
 
     }
 
+
     IEnumerator Switch(GameObject Newcamera)
     {
         Fadein = true;
