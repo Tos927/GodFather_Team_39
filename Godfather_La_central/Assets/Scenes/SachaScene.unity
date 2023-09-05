@@ -233,7 +233,7 @@ MonoBehaviour:
   - {fileID: 938203796}
   - {fileID: 1887407292}
   - {fileID: 1226679794}
-  TimeToChange: 0.2
+  TimeToChange: 0.25
   FadeCurve:
     serializedVersion: 2
     m_Curve:
@@ -247,7 +247,7 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.1
+      time: 0.17460021
       value: 1
       inSlope: 2
       outSlope: 2
