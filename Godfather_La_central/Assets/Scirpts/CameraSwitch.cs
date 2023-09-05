@@ -10,7 +10,6 @@ public class CameraSwitch : MonoBehaviour
     public List<GameObject> cameras = new List<GameObject>();
 
     public float TimeToChange = .2f;
-
     private AudioSource audioSource;
 
 
@@ -22,14 +21,15 @@ public class CameraSwitch : MonoBehaviour
 
     private float _time;
 
-    public static CameraState cameraState;
+    public CameraState cameraState = CameraState.Camera1;
 
     public enum CameraState
     {
-        Camera1,
-        Camera2,
-        Camera3,
-        Camera4,
+        CameraNull = 0,
+        Camera1 = 1,
+        Camera2 = 2,
+        Camera3 = 3,
+        Camera4 = 4,
     }
 
     private void Start()
@@ -40,7 +40,7 @@ public class CameraSwitch : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1)) // Switch state ? Voire comment choper 
         {
             cameraState = CameraState.Camera1;
             GameObject camera = cameras[0];
@@ -63,7 +63,7 @@ public class CameraSwitch : MonoBehaviour
     }
     public void OnGUI()
     {
-        if(Fadeout && Fadein) { Fadein = false;}
+        if(Fadeout && Fadein) { Fadein = false;} //fails safe if forcing on input
 
         if (Fadein)
         {
