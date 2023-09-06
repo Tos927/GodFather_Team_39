@@ -9,23 +9,32 @@ public class Decoup : MonoBehaviour
 
     public float TimeToSwap = 1f;
     
-    public GameObject LeftArrow;
-    public GameObject RightArrow;
+
 
     Coroutine lastCoroutine;
     bool stopCoroutines = false;
 
     bool _isLeft;
+    bool _ispining;
 
     float MouseWheel;
 
 
-    //Things in screen
+    #region Things in screen
+
+    public GameObject LeftArrow;
+    public GameObject RightArrow;
 
     public GameObject saw;
 
+    #endregion
     public void Startmodule()
     {
+        //RESET
+        saw.transform.eulerAngles = Vector3.zero;
+        _ispining= false;
+        stopCoroutines = false;
+
         ///Rand Int to decide L || R
         int LeftRight = Random.Range(0, 2);
 
@@ -40,8 +49,9 @@ public class Decoup : MonoBehaviour
 
     public void Start()
     { 
-        Startmodule();
     }
+
+
     //RIGHT IS UP ON MOUSE WHEEL
     private void Update()
     {
@@ -60,25 +70,51 @@ public class Decoup : MonoBehaviour
                 if (MouseWheel > 0)
                 {
                     turningLeft = false;
-                    saw.transform.eulerAngles -= new Vector3(0, 0, MouseWheel);
+                    saw.transform.eulerAngles += new Vector3(0, 0, MouseWheel);
                 }
                 if (MouseWheel < 0) 
                 { 
                     turningLeft = true;
-                    saw.transform.eulerAngles -= new Vector3(0, 0, MouseWheel);
+                    saw.transform.eulerAngles += new Vector3(0, 0, MouseWheel);
 
                 }
                 isGood = (turningLeft, _isLeft) switch
                 {
-                    (true, false)   =>  true,
-                    (false, true)   =>  false,
-                    (true, true)    =>  true,
-                    (false, false)  =>  false
+                    (true , false) => true,
+                    (false, true ) => true,
+                    (true , true ) => false,
+                    (false, false) => false
                 };
                 if(!isGood) { print("Game Over"); }
+                else /* Sucess */
+                {
+                    StartCoroutine(SawRotateSucess());
+                }
             }
+
+            if (_ispining)
+            {
+                if (_isLeft)
+                {
+                    saw.transform.eulerAngles += new Vector3(0, 0, 2);
+                }
+                else
+                {
+                    saw.transform.eulerAngles -= new Vector3(0, 0, 2);
+                }
+            }
+
         }
     }
+
+
+    IEnumerator SawRotateSucess()
+    {
+        yield return new WaitForSeconds(.5f);
+        _ispining = true;
+        stopCoroutines = true;
+    }
+
 
     //Clignotant
     IEnumerator ArrowOn(GameObject Arrow)
@@ -101,6 +137,7 @@ public class Decoup : MonoBehaviour
         if (stopCoroutines)
         {
             StopCoroutine(lastCoroutine);
+            stopCoroutines = false;
             yield return null;
         }
         StopCoroutine(lastCoroutine);

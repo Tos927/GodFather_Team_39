@@ -1,75 +1,98 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR;
 
 public class CameraSwitch : MonoBehaviour
 {
-    public Image cameraFade;
-    public List<GameObject> cameras = new List<GameObject>();
+    /*    public Image cameraFade;*/
 
-    public float TimeToChange = .2f;
     private AudioSource audioSource;
+    public float TimeToChange = .2f;
+
+    public List<Transform> cameraPoses = new List<Transform>();
+    public AnimationCurve PosOverTime;
+    public float duration = .5f;
+    private Vector3 OldPosition;
+    private bool _doCameraMovs = false;
 
 
-    public AnimationCurve FadeCurve;
-    private float _alpha = 1;
+/*    private float _alpha = 1;
     private Texture2D _texture;
     private bool Fadein = false;
-    private bool Fadeout = false;
+    private bool Fadeout = false;*/
 
     private float _time;
 
     public CameraState cameraState = CameraState.Camera1;
 
+    public Decoup decoup;
+
+
     public enum CameraState
     {
-        CameraNull = 0,
-        Camera1 = 1,
-        Camera2 = 2,
-        Camera3 = 3,
-        Camera4 = 4,
+        Camera1 = 0,
+        Camera2 = 1,
+        Camera3 = 2,
+        Camera4 = 3,
     }
 
     private void Start()
     {
+        decoup.Startmodule();
+        _time = 0;
         audioSource = GetComponent<AudioSource>();
-        cameraFade.color = new Color(0, 0, 0, 0);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) // Switch state ? Voire comment choper 
+        if (Input.GetKeyDown(KeyCode.Alpha1)) 
         {
             cameraState = CameraState.Camera1;
-            GameObject camera = cameras[0];
-            StartCoroutine(Switch(camera));
-
+            DoCameraMoves();
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             cameraState = CameraState.Camera2;
-            GameObject camera = cameras[1];
-            StartCoroutine(Switch(camera));
+            DoCameraMoves();
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             cameraState = CameraState.Camera3;
-            GameObject camera = cameras[2];
-            StartCoroutine(Switch(camera));
+            DoCameraMoves();
         }
 
     }
+    void DoCameraMoves()
+    {
+        StartCoroutine(GoTo(cameraPoses[(int)cameraState].position));
+    }
+    private IEnumerator GoTo(Vector3 endPosition)
+    {
+        float elapsed = 0;
+
+        Vector3 startPosition = transform.position;
+
+        while (elapsed <= duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = PosOverTime.Evaluate(elapsed / duration);
+            transform.position = Vector3.LerpUnclamped(startPosition, endPosition, t);
+            //float distance = Vector3.Distance(transform.position, endPosition);
+            yield return null;
+        }
+    }
     public void OnGUI()
     {
-        if(Fadeout && Fadein) { Fadein = false;} //fails safe if forcing on input
+/*        if(Fadeout && Fadein) { Fadein = false;} //fails safe if forcing on input
 
         if (Fadein)
         {
             _time += Time.deltaTime;
             _alpha = FadeCurve.Evaluate(_time);
-            print("Fading IN / " + _time);
+            //print("Fading IN / " + _time);
             cameraFade.color = new Color(0, 0, 0, _alpha);
             if (_alpha >= 1) Fadein = false;
         }
@@ -77,26 +100,21 @@ public class CameraSwitch : MonoBehaviour
         {
             _time -= Time.deltaTime;
             _alpha = FadeCurve.Evaluate(_time);
-            print("Fading OUT / " + _time);
+            //print("Fading OUT / " + _time);
             cameraFade.color = new Color(0, 0, 0, _alpha);
             if (_alpha <= 0) Fadeout = false;
-        }
-
+        }*/
     }
 
 
-    IEnumerator Switch(GameObject Newcamera)
+/*    IEnumerator Switch(GameObject Newcamera)
     {
         Fadein = true;
         audioSource.Play();
         yield return new WaitForSeconds(TimeToChange);
-        foreach (GameObject cam in cameras)
-        {
-            cam.SetActive(false);
-        }
         Newcamera.SetActive(true);
         audioSource.Play();
         Fadeout = true;
 
-    }
+    }*/
 }
