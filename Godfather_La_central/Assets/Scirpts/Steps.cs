@@ -7,13 +7,15 @@ public class Steps : MonoBehaviour
     [SerializeField] GameObject cube;
     bool isWin = false;
     bool isLose = false;
+    public KeyCode key;
+    
     void Start()
     {
         if (cube == null)
             Debug.Log("Pas de cube.");
         cube.tag = "first";
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -24,7 +26,7 @@ public class Steps : MonoBehaviour
 
     public void allsteps()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && cube.tag == "first")
+        if (Input.GetKeyDown(KeyCode.Space) && Input.GetKeyDown(KeyCode.LeftShift) && cube.tag == "first")
         {
             cube.transform.Rotate(cube.transform.position, 90);
             cube.tag = "second";
