@@ -47,7 +47,7 @@ public class CameraSwitch : MonoBehaviour
 
     private void Start()
     {
-        print(CameraState);
+        //print(CameraState);
         //decoup.Startmodule();
         _time = 0;
         audioSource = GetComponent<AudioSource>();

@@ -32,6 +32,7 @@ public class Node : MonoBehaviour
                 GameManager.instance.nodeStart();
                 if (nbcaisse == 3)
                 {
+                    sucess = true;
                     gameManager.cameraSwitch.CameraState += 1;
                     gameManager.cameraSwitch.DoCameraMoves();
                 }
@@ -39,6 +40,7 @@ public class Node : MonoBehaviour
             }
             
         }
+
         if (nbBras == 3 && nbcaisse != 3) 
         {
             
@@ -62,12 +64,12 @@ public class Node : MonoBehaviour
         //hit
 
 
-        Debug.Log("touch�");
+        //Debug.Log("touch�");
     }
     private void OnCollisionExit(Collision collision)
     {
         //out
-        Debug.Log("out");
+        //Debug.Log("out");
         if (collision.gameObject.tag == "zone")
         {
             canBePressed = false;
