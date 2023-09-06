@@ -9,6 +9,8 @@ public class Node : MonoBehaviour
     public bool canBePressed;
     public bool gotPressed;
     public int nbcaisse = 0;
+    public int nbBras = 0;
+    public bool sucess = false;
     void Start()
     {
   
@@ -25,11 +27,17 @@ public class Node : MonoBehaviour
                 gotPressed = true;
                 if (nbcaisse == 3)
                 {
-                    GameManager.instance.NodeHit();
-                    gameObject.SetActive(false);
+                    //changement de cam
                 }
+                
             }
             
+        }
+        if (nbBras == 3 && nbcaisse != 3)
+        {
+            GameManager.instance.NodeHit();
+            gameObject.SetActive(false);
+
         }
     }
 
@@ -53,8 +61,9 @@ public class Node : MonoBehaviour
             canBePressed = false;
             if(!gotPressed)
             {
-                GameManager.instance.NodeFailed();
+                //GameManager.instance.NodeFailed();
             }
+            nbBras++;
             gotPressed = false;
         }
     }
