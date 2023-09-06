@@ -6,6 +6,7 @@ public class scroller : MonoBehaviour
 {
     public bool hasStarted = false;
     public bool first = true;
+    public bool stop = false;
     public float tempo;
     public int nbCaisse = 3;
     public Transform spawnPoint;
@@ -26,7 +27,9 @@ public class scroller : MonoBehaviour
                 first = false;
                 caisseObject = Instantiate(caissePrefabs, spawnPoint);
             }
-            caisseObject.transform.position += new Vector3(tempo * Time.deltaTime, 0, 0);
+
+            if(!stop)
+                caisseObject.transform.position += new Vector3(tempo * Time.deltaTime, 0, 0);
         }
     }
 
