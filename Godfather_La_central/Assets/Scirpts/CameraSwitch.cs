@@ -9,6 +9,8 @@ public class CameraSwitch : MonoBehaviour
 {
     /*    public Image cameraFade;*/
 
+    GameManager gameManager;
+
     private AudioSource audioSource;
     public float TimeToChange = .2f;
 
@@ -26,13 +28,16 @@ public class CameraSwitch : MonoBehaviour
     private bool Fadeout = false;*/
 
     private float _time;
+    private bool _isSwitching = false;
+    [SerializeField] private CameraStates _cameraState = CameraStates.Camera3;
+    public CameraStates CameraState { get => _cameraState; set => _cameraState = value;  }
 
-    public CameraState cameraState = CameraState.Camera1;
-
-    public Decoup decoup;
 
 
-    public enum CameraState
+    //public Decoup decoup;
+
+
+    public enum CameraStates
     {
         Camera1 = 0,
         Camera2 = 1,
@@ -42,34 +47,46 @@ public class CameraSwitch : MonoBehaviour
 
     private void Start()
     {
-        decoup.Startmodule();
+        print(CameraState);
+        //decoup.Startmodule();
         _time = 0;
         audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
-        transform.position += Vector3.right * cameraSpeed * .01f; 
+        transform.position += Vector3.right * cameraSpeed * .01f;
+        if(transform.position.x >= cameraPoses[(int)_cameraState].position.x + 2 && !_isSwitching)
+        {
+            DoCameraMoves();
+        }
+
+
         if (Input.GetKeyDown(KeyCode.Alpha1)) 
         {
-            cameraState = CameraState.Camera1;
+            _cameraState = CameraStates.Camera1;
             DoCameraMoves();
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            cameraState = CameraState.Camera2;
+            _cameraState = CameraStates.Camera2;
             DoCameraMoves();
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            cameraState = CameraState.Camera3;
+            _cameraState = CameraStates.Camera3;
             DoCameraMoves();
         }
 
     }
-    void DoCameraMoves()
+    CameraStates SetCameraState()
     {
-        StartCoroutine(GoTo(cameraPoses[(int)cameraState].position));
+
+        return CameraStates.Camera1;
+    }
+    public void DoCameraMoves()
+    {
+        StartCoroutine(GoTo(cameraPoses[(int)_cameraState].position));
     }
     private IEnumerator GoTo(Vector3 endPosition)
     {
@@ -79,12 +96,15 @@ public class CameraSwitch : MonoBehaviour
 
         while (elapsed <= duration)
         {
+            _isSwitching = true;
             elapsed += Time.deltaTime;
             float t = PosOverTime.Evaluate(elapsed / duration);
             transform.position = Vector3.LerpUnclamped(startPosition, endPosition, t);
             //float distance = Vector3.Distance(transform.position, endPosition);
             yield return null;
         }
+        _isSwitching = false;
+        print(_isSwitching);
     }
     public void OnGUI()
     {

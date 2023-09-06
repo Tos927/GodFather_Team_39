@@ -63,7 +63,7 @@ public class Decoup : MonoBehaviour
         
         
         //print(MouseWheel);
-        if ((int)CameraMan.cameraState == 1)
+        if ((int)CameraMan.CameraState == 1)
         {
             if(MouseWheel != 0)
             {

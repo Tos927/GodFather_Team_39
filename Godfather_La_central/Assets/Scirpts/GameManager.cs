@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public bool pass = false;
     public scroller scoller;
 
+    public CameraSwitch cameraSwitch;
+
     private void Start()
     {
         instance = this;

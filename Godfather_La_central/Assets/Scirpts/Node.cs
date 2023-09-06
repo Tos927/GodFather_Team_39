@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Node : MonoBehaviour
 {
+    GameManager gameManager; 
+
 
     public KeyCode keycode;
     public bool canBePressed = false;
     public bool gotPressed = false;
     public int nbcaisse = 0;
     public int nbBras = 0;
+    public bool sucess = false;
     void Start()
     {
-  
+        gameManager = GameManager.instance;
     }
 
     // Update is called once per frame
@@ -27,7 +30,8 @@ public class Node : MonoBehaviour
                 GameManager.instance.nodeStart();
                 if (nbcaisse == 3)
                 {
-                    //changement de cam
+                    gameManager.cameraSwitch.CameraState += 1;
+                    gameManager.cameraSwitch.DoCameraMoves();
                 }
                 
             }
@@ -56,7 +60,7 @@ public class Node : MonoBehaviour
         //hit
 
 
-        Debug.Log("touché");
+        Debug.Log("touchï¿½");
     }
     private void OnCollisionExit(Collision collision)
     {
