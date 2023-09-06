@@ -8,8 +8,8 @@ public class Node : MonoBehaviour
 
 
     public KeyCode keycode;
-    public bool canBePressed;
-    public bool gotPressed;
+    public bool canBePressed = false;
+    public bool gotPressed = false;
     public int nbcaisse = 0;
     public int nbBras = 0;
     public bool sucess = false;
@@ -29,6 +29,7 @@ public class Node : MonoBehaviour
             {
                 nbcaisse++;
                 gotPressed = true;
+                GameManager.instance.nodeStart();
                 if (nbcaisse == 3)
                 {
                     gameManager.cameraSwitch.CameraState += 1;
@@ -38,8 +39,9 @@ public class Node : MonoBehaviour
             }
             
         }
-        if (nbBras == 3 && nbcaisse != 3)
+        if (nbBras == 3 && nbcaisse != 3) 
         {
+            
             GameManager.instance.NodeHit();
             gameObject.SetActive(false);
 
@@ -52,10 +54,15 @@ public class Node : MonoBehaviour
     {
         if (collision.gameObject.tag == "zone")
             canBePressed = true;
+
+        if (collision.gameObject.tag == "stop" && !gotPressed)
+        {
+            GameManager.instance.nodeStop();
+        }
         //hit
 
 
-        Debug.Log("touché");
+        Debug.Log("touchï¿½");
     }
     private void OnCollisionExit(Collision collision)
     {

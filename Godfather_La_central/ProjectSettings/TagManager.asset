@@ -8,6 +8,7 @@ TagManager:
   - second
   - third
   - zone
+  - stop
   layers:
   - Default
   - TransparentFX

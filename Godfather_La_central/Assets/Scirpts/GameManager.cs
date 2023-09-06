@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public AudioSource audio;
     public bool startMusic = false;
     public static GameManager instance;
+    public bool pass = false;
     public scroller scoller;
 
     public CameraSwitch cameraSwitch;
@@ -31,7 +32,14 @@ public class GameManager : MonoBehaviour
         scoller.hashit();
         Debug.Log("hit");
     }
-
+    public void nodeStop()
+    {
+        scoller.stop = true;
+    }
+    public void nodeStart()
+    {
+        scoller.stop = false;
+    }
     public void NodeFailed()
     {
         scoller.failedHit();
