@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public bool pass = false;
     public scroller scoller;
-
+    public Steps steps;
     public CameraSwitch cameraSwitch;
 
     private void Start()
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     public void NodeHit()
     {
-        scoller.hashit();
+        StartCoroutine(scoller.hashit());
         Debug.Log("hit");
     }
     public void nodeStop()

@@ -13,6 +13,24 @@ public class scroller : MonoBehaviour
     public GameObject caissePrefabs;
     public GameObject caisseObject;
 
+    public float _timeFromStart;
+
+    public bool isTempoRight()
+    {
+        float tempo = _timeFromStart - Mathf.Floor(_timeFromStart);
+        print(tempo);
+        if (_timeFromStart >= 0.9f || _timeFromStart <=  0.1f)
+        {
+            print("true");
+            return true;
+        }
+        else
+        {
+            print("false");
+            return false;
+        }
+    }
+
     private void Start()
     {
         tempo /= 10;
@@ -20,6 +38,11 @@ public class scroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (hasStarted)
+        {
+            _timeFromStart += Time.deltaTime;
+        }
+
         if(hasStarted)
         {
             if(first)
@@ -33,8 +56,14 @@ public class scroller : MonoBehaviour
         }
     }
 
-    public void hashit()
+    public IEnumerator hashit()
     {
+        while (!isTempoRight())
+        {
+            print("oui");
+            yield return null;
+        }
+        print("AAAAAAAAAAAAA");
         caisseObject = Instantiate(caissePrefabs, spawnPoint);
         
     }
