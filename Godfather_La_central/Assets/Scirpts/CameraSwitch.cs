@@ -12,6 +12,7 @@ public class CameraSwitch : MonoBehaviour
     private AudioSource audioSource;
     public float TimeToChange = .2f;
 
+    public float cameraSpeed = 1f;
     public List<Transform> cameraPoses = new List<Transform>();
     public AnimationCurve PosOverTime;
     public float duration = .5f;
@@ -48,6 +49,7 @@ public class CameraSwitch : MonoBehaviour
 
     void Update()
     {
+        transform.position += Vector3.right * cameraSpeed * .01f; 
         if (Input.GetKeyDown(KeyCode.Alpha1)) 
         {
             cameraState = CameraState.Camera1;
