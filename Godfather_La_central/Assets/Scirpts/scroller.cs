@@ -17,9 +17,14 @@ public class scroller : MonoBehaviour
 
     public bool isTempoRight()
     {
-        float tempo = _timeFromStart - Mathf.Floor(_timeFromStart);
-        print(tempo);
-        if (_timeFromStart >= 0.9f || _timeFromStart <=  0.1f)
+        float secondsPerBeat = 60.0f / 60.0f;  // 60 BPM
+        float margin = 0.1f;  // Marge de 0,1 seconde
+
+        float currentTime = _timeFromStart;
+
+        float timeSinceLastBeat = currentTime % secondsPerBeat;
+        print(timeSinceLastBeat);
+        if (timeSinceLastBeat <= margin || timeSinceLastBeat >= secondsPerBeat - margin)
         {
             print("true");
             return true;
