@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public scroller scoller;
 
+    public CameraSwitch cameraSwitch;
+
     private void Start()
     {
         instance = this;

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Node : MonoBehaviour
 {
+    GameManager gameManager; 
+
 
     public KeyCode keycode;
     public bool canBePressed;
@@ -11,9 +13,11 @@ public class Node : MonoBehaviour
     public int nbcaisse = 0;
     public int nbBras = 0;
     public bool sucess = false;
+
+
     void Start()
     {
-  
+        gameManager = GameManager.instance;
     }
 
     // Update is called once per frame
@@ -27,7 +31,8 @@ public class Node : MonoBehaviour
                 gotPressed = true;
                 if (nbcaisse == 3)
                 {
-                    //changement de cam
+                    gameManager.cameraSwitch.CameraState += 1;
+                    gameManager.cameraSwitch.DoCameraMoves();
                 }
                 
             }
