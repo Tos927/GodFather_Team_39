@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class scroller : MonoBehaviour
 {
@@ -15,18 +16,44 @@ public class scroller : MonoBehaviour
 
     public float _timeFromStart;
 
+    float decalage = 0;
+    //MARGE JOUEUR
     public bool isTempoRight()
     {
-        float secondsPerBeat = 60.0f / 60.0f;  // 60 BPM
-        float margin = 0.1f;  // Marge de 0,1 seconde
+        float secondsPerBeat = 1; // 60.0f / 60.0f;
+        float margin = 0.1f;
 
         float currentTime = _timeFromStart;
-
+        //float currentTime = _timeFromStart - (int)_timeFromStart;
         float timeSinceLastBeat = currentTime % secondsPerBeat;
         print(timeSinceLastBeat);
         if (timeSinceLastBeat <= margin || timeSinceLastBeat >= secondsPerBeat - margin)
         {
             print("true");
+            return true;
+        }
+        else
+        {
+            print("false");
+            return false;
+        }
+    }
+
+    // MARGE MACHINE
+    public bool PerfectTempo()
+    {
+        float secondsPerBeat = 1;
+        float margin = 0.01f;  
+
+        float currentTime = _timeFromStart;
+
+        float timeSinceLastBeat = currentTime % secondsPerBeat;
+
+        if (timeSinceLastBeat <= margin || timeSinceLastBeat >= secondsPerBeat - margin)
+        {
+            print("true");
+            decalage += timeSinceLastBeat - 1;
+            print(decalage);
             return true;
         }
         else
@@ -63,7 +90,7 @@ public class scroller : MonoBehaviour
 
     public IEnumerator hashit()
     {
-        while (!isTempoRight())
+        while (!PerfectTempo())
         {
             print("oui");
             yield return null;
