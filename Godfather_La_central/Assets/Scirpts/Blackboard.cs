@@ -5,6 +5,7 @@ using UnityEngine;
 public class Blackboard : MonoBehaviour
 {
     public List<GameObject> Sprites;
+    private List<GameObject> SpritesToLit = new List<GameObject>();
 
     private Coroutine lastCoroutine;
     public float timeToSwap = .1f;
@@ -36,55 +37,60 @@ public class Blackboard : MonoBehaviour
 
     void DecodeInputs(List<LALIST> Actions)
     {
+        if(lastCoroutine != null) StopCoroutine(lastCoroutine);
+
+        SpritesToLit.Clear();
+        foreach (GameObject g in Sprites) { g.SetActive(false); }
         foreach(LALIST I in Actions)
         {
-            if((int)I <= 1) Sprites[12].SetActive(true);
-            else if((int)I <= 3) Sprites[13].SetActive(true);
-            else if((int)I <= 5) Sprites[14].SetActive(true);
+            if((int)I <= 1) SpritesToLit.Add(Sprites[12]);
+            else if((int)I <= 3) SpritesToLit.Add(Sprites[13]);
+            else if((int)I <= 5) SpritesToLit.Add(Sprites[14]);
 
-            switch(I)
+            switch (I)
             {
-                /*case 0: Sprites[0].SetActive(true); break;
-                case 1: Sprites[1].SetActive(true); break;
-                case 2: Sprites[0].SetActive(true); break;
-                case 3: Sprites[1].SetActive(true); break;
-                case 4: Sprites[0].SetActive(true); break;
-                case 5: Sprites[1].SetActive(true); break;
-                case 6: Sprites[1].SetActive(true); break;
-                case 7: Sprites[0].SetActive(true); break;
-                case 8: Sprites[1].SetActive(true); break;
-                case 9: Sprites[0].SetActive(true); break;
-                case 10: Sprites[1].SetActive(true); break;*/
-            }
+                case (LALIST)0: SpritesToLit.Add(Sprites[0]); break;
+                case (LALIST)1: SpritesToLit.Add(Sprites[1]); break;
+                case (LALIST)2: SpritesToLit.Add(Sprites[2]); break;
+                case (LALIST)3: SpritesToLit.Add(Sprites[3]); break;
+                case (LALIST)4: SpritesToLit.Add(Sprites[4]); break;
+                case (LALIST)5: SpritesToLit.Add(Sprites[5]); break;
+                case (LALIST)6: SpritesToLit.Add(Sprites[6]); break;
+                case (LALIST)7: SpritesToLit.Add(Sprites[7]); break;
+                case (LALIST)8: SpritesToLit.Add(Sprites[8]); break;
+                case (LALIST)9: SpritesToLit.Add(Sprites[9]); break;
+                case (LALIST)10: SpritesToLit.Add(Sprites[10]); break;
+                case (LALIST)11: SpritesToLit.Add(Sprites[11]); break;
 
+            }
+            lastCoroutine = StartCoroutine(ArrowOn());
         }
     }
 
     void Start()
     {
-        GameObject a = null;
-        StartCoroutine(ArrowOn(a));
+        //DecodeInputs(actionList[0].inputs);
     }
 
     // Update is called once per frame
-    void Update()
+    void OnValidate()
     {
-        
+        DecodeInputs(actionList[0].inputs);
     }
 
-    IEnumerator ArrowOn(GameObject Arrow)
+    IEnumerator ArrowOn()
     {
-        Arrow.SetActive(true);
+        foreach(GameObject go in SpritesToLit) { go.SetActive(true); }
         yield return new WaitForSeconds(timeToSwap);
         StopCoroutine(lastCoroutine);
-        //lastCoroutine = StartCoroutine(ArrowOff(Arrow));
+        lastCoroutine = StartCoroutine(ArrowOff());
     }
 
-    IEnumerator ArrowOff(GameObject Arrow)
+    IEnumerator ArrowOff()
     {
-        Arrow.SetActive(false);
+        foreach (GameObject go in SpritesToLit) { go.SetActive(false); }
         yield return new WaitForSeconds(timeToSwap);
         StopCoroutine(lastCoroutine);
-        //lastCoroutine = StartCoroutine(ArrowOn(Arrow));
+        lastCoroutine = StartCoroutine(ArrowOn());
     }
 }
