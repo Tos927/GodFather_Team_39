@@ -17,6 +17,23 @@ public class GameManager : MonoBehaviour
     public Steps steps;
     public CameraSwitch cameraSwitch;
 
+
+    public int Cycles = 0;
+    public bool IsCyclesPerfect = true;
+    public int PerfectCombo = 0;
+
+
+    public int ComboStart = 2; //6
+    public bool IsInCombo = false;
+
+    public int ComboFolieStart = 4; //24 // 2 Cycles
+    public bool IsInComboFolie = false;
+
+
+    public int ComboCredits = 6; //48 3*4*4 // 4 cycles 
+    public bool IsInComboCredits = false;
+
+
     private void Start()
     {
         instance = this;
@@ -45,6 +62,9 @@ public class GameManager : MonoBehaviour
         /*audioGen.clip = clips[0];
         nbclip = 0;
         audioGen.Play();*/
+
+        //looseCombo
+        PerfectCombo = 0;
         foreach (AudioSource audiosources in audioGen)
         {
             audiosources.volume = 0;
@@ -62,6 +82,24 @@ public class GameManager : MonoBehaviour
     }
     public void NodeHitPerfect()
     {
+
+        //COMBO
+        PerfectCombo++;
+        if(PerfectCombo == ComboStart)
+        {
+            IsInCombo = true;
+        }
+        if (PerfectCombo == ComboFolieStart)
+        {
+            IsInComboFolie = true;
+        }
+        if (PerfectCombo == ComboCredits)
+        {
+            IsInComboCredits = true;
+        }
+
+
+
         foreach (AudioSource audiosources in audioGen)
         {
             audiosources.volume = 0;
