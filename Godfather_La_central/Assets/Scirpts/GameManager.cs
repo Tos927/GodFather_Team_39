@@ -85,22 +85,23 @@ public class GameManager : MonoBehaviour
         if(x == 0)
             tubeAnim.SetBool("tub", true);
         else if(x == 1)
+            ScieAnim.SetBool("tub", true);
+        else if(x >= 2)
             ScieAnim.SetBool("scie", true);
-        else if(x < 2)
-            tubeAnim.SetBool("tub", true);
 
-        StartCoroutine(resetAnim());
+        StartCoroutine(resetAnim(x));
     }
-    IEnumerator resetAnim()
+    IEnumerator resetAnim(int x)
     {
         yield return new WaitForSeconds(1f);
-        tubeAnim.SetBool("tub", false);
-        ScieAnim.SetBool("scie", false);
+        if (x == 0)
+            tubeAnim.SetBool("tub", false);
+        /*else if (x == 1)
+            ScieAnim.SetBool("scie", false);*/
+        else if (x >= 2)
+            ScieAnim.SetBool("scie", false);
         yield return null;
     }
     
-    public void NodeFailed()
-    {
-        Debug.Log("miss");
-    }
+
 }

@@ -9,6 +9,7 @@ TagManager:
   - third
   - zone
   - stop
+  - pixel
   layers:
   - Default
   - TransparentFX

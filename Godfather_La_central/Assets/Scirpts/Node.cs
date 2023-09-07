@@ -13,6 +13,8 @@ public class Node : MonoBehaviour
     public int nbcaisse = 0;
     public int nbBras = 0;
     public bool sucess = false;
+    public bool perfect = false;
+    public bool canPerfect = false;
 
 
     void Start()
@@ -31,7 +33,10 @@ public class Node : MonoBehaviour
                 GameManager.instance.nodeStart(nbBras);
                 nbcaisse++;
                 gotPressed = true;
-                GameManager.instance.NodeHitPerfect();
+                if(canPerfect) 
+                {
+                    GameManager.instance.NodeHitPerfect();
+                }
                 if (nbcaisse == 3)
                 {
                     sucess = true;
@@ -56,7 +61,7 @@ public class Node : MonoBehaviour
 
         if (collision.gameObject.tag == "stop" && !gotPressed)
         {
-            GameManager.instance.nodeStop();
+            canPerfect = true;   
         }
         //hit
 
@@ -76,6 +81,11 @@ public class Node : MonoBehaviour
             }
             nbBras++;
             gotPressed = false;
+        }
+        if (collision.gameObject.tag == "stop" && !gotPressed)
+        {
+            canPerfect = false;
+
         }
     }
 }

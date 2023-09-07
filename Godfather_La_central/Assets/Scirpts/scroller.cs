@@ -7,12 +7,9 @@ using UnityEngine.UIElements;
 public class scroller : MonoBehaviour
 {
     public bool hasStarted = false;
-    public bool first = true;
     public bool stop = false;
     public float tempo;
-    public int beat;
-    public bool isbeat = false;
-    public int nbCaisse = 3;
+    public int beat = 0;
     public Transform spawnPoint;
     public GameObject caissePrefabs;
     public GameObject caisseObject;
@@ -23,7 +20,7 @@ public class scroller : MonoBehaviour
 
 
 
-    float decalage = 0;
+    //float decalage = 0;
     //MARGE JOUEUR
     public bool isTempoRight()
     {
@@ -72,6 +69,7 @@ public class scroller : MonoBehaviour
     {
         gameManager = FindObjectOfType<GameManager>();
         stop = false;
+        beat = 0;
         //StartCoroutine(DoBeat());
         tempo /= 10;
     }
@@ -93,25 +91,18 @@ public class scroller : MonoBehaviour
     {
         if (hasStarted == false)
         {
-            while (!Input.anyKeyDown)
-            {
-                hasStarted = true;
-                //gameManager.Starter();
-                yield return null;
-            }
-            first = false;
+            hasStarted = true;
+
             caisseObject = Instantiate(caissePrefabs, spawnPoint);
             Camera.main.transform.parent = caisseObject.transform;
             Camera.main.transform.position =
                 new Vector3 (
                     caisseObject.transform.position.x + Camera.main.GetComponent<CameraSwitch>().offset,
-                    caisseObject.transform.position.y + .78f,
+                    caisseObject.transform.position.y + 0.78f,
                     Camera.main.transform.position.z
                     );
         }
-        print("JHELLO");
-        yield return new WaitForSecondsRealtime(.999f);
-        isbeat = true;
+        yield return new WaitForSecondsRealtime(1f);
         beat++;
 
         if (beat == 4)
@@ -124,7 +115,7 @@ public class scroller : MonoBehaviour
                 gameManager.cameraSwitch.DoCameraMoves();
 
             }
-            if (!caisseObject.GetComponent<Node>().sucess)
+            else if (!caisseObject.GetComponent<Node>().sucess)
             {
                 //FAIl
                 Camera.main.transform.parent = null;
@@ -149,9 +140,7 @@ public class scroller : MonoBehaviour
     }
     public IEnumerator EndBeat()
     {
-        print("JEXISTE");
         yield return new WaitForSecondsRealtime(.002f);
-        isbeat = false;
         StartCoroutine(DoBeat());
     }
 

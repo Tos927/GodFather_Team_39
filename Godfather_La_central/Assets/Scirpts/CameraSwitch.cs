@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 using UnityEngine.XR;
 
 public class CameraSwitch : MonoBehaviour
@@ -62,7 +63,7 @@ public class CameraSwitch : MonoBehaviour
     {
         if (gameManager.scoller.hasStarted)
         {
-            transform.position += Vector3.left * cameraSpeed * .01f;
+            transform.position += Vector3.left * cameraSpeed * .01f * Time.deltaTime;
         }
 
         if (Input.GetKeyDown(KeyCode.O)) StartCoroutine(ZoomInAndOut());
