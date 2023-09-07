@@ -96,7 +96,7 @@ public class scroller : MonoBehaviour
             while (!Input.anyKeyDown)
             {
                 hasStarted = true;
-                gameManager.Starter();
+                //gameManager.Starter();
                 yield return null;
             }
             first = false;
@@ -109,7 +109,8 @@ public class scroller : MonoBehaviour
                     Camera.main.transform.position.z
                     );
         }
-        yield return new WaitForSecondsRealtime(.99f);
+        print("JHELLO");
+        yield return new WaitForSecondsRealtime(.999f);
         isbeat = true;
         beat++;
 
@@ -139,7 +140,6 @@ public class scroller : MonoBehaviour
                     caisseObject.transform.position.y + .78f,
                     Camera.main.transform.position.z
                     );
-                //print("JEXISTE");
 
             }
         }
@@ -149,7 +149,8 @@ public class scroller : MonoBehaviour
     }
     public IEnumerator EndBeat()
     {
-        yield return new WaitForSecondsRealtime(.02f);
+        print("JEXISTE");
+        yield return new WaitForSecondsRealtime(.002f);
         isbeat = false;
         StartCoroutine(DoBeat());
     }

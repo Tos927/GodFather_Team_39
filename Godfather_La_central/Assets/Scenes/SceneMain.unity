@@ -2254,7 +2254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: 5
   TimeToChange: 0.2
-  cameraSpeed: 1.85
+  cameraSpeed: 1
   cameraPoses:
   - {fileID: 1522268042}
   - {fileID: 2008861001}
