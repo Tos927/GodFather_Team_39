@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class Node : MonoBehaviour
@@ -14,12 +15,23 @@ public class Node : MonoBehaviour
     public int nbBras = 0;
     public bool sucess = false;
     public bool perfect = false;
-    public bool canPerfect = false;
 
 
+    public BoxCollider boxCollider;
+    public BoxCollider boxColliderPixel;
+
+    public SubNode subNode;
+
+    public bool canPerfect()
+    {
+        return subNode.isPerfect;
+    }
+    
     void Start()
     {
         gameManager = GameManager.instance;
+        boxCollider = GetComponent<BoxCollider>();
+        subNode = GetComponentInChildren<SubNode>();
         nbBras = 0;
     }
 
@@ -30,12 +42,17 @@ public class Node : MonoBehaviour
         {
             if(canBePressed)
             {
-                GameManager.instance.nodeStart(nbBras);
+                gameManager.nodeStart(nbBras);
                 nbcaisse++;
                 gotPressed = true;
-                if(canPerfect) 
+                if(canPerfect()) 
                 {
-                    GameManager.instance.NodeHitPerfect();
+                    print("YA/GO/IT");
+                    gameManager.NodeHitPerfect();
+                }
+                else
+                {
+                    gameManager.NodeHit();
                 }
                 if (nbcaisse == 3)
                 {
@@ -58,15 +75,6 @@ public class Node : MonoBehaviour
     {
         if (collision.gameObject.tag == "zone")
             canBePressed = true;
-
-        if (collision.gameObject.tag == "stop" && !gotPressed)
-        {
-            canPerfect = true;   
-        }
-        //hit
-
-
-        //Debug.Log("touch�");
     }
     private void OnCollisionExit(Collision collision)
     {
@@ -81,11 +89,6 @@ public class Node : MonoBehaviour
             }
             nbBras++;
             gotPressed = false;
-        }
-        if (collision.gameObject.tag == "stop" && !gotPressed)
-        {
-            canPerfect = false;
-
         }
     }
 }

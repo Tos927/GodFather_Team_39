@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
         {
             audiosources.volume = 0;
         }
-
+        StartCoroutine(cameraSwitch.ZoomInAndOut());
         if (nbclip < 4)
         {
             audioGen[nbclip + 1].volume = 100;
@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
         {
             audiosources.volume = 0;
         }
+        StartCoroutine(cameraSwitch.ZoomInAndOutPIXEL());
 
         if (nbclip < 4)
         {

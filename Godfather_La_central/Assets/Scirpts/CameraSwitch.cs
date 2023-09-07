@@ -22,7 +22,8 @@ public class CameraSwitch : MonoBehaviour
     public AnimationCurve PosOverTime;
     public float duration = .5f;
     public float zoomduration = .2f;
-    public float zoomForce = 4.5f;
+    public float zoomForce = 4.7f;
+    public float zoomForcePixel = 4.3f;
     private Vector3 OldPosition;
     private bool _doCameraMovs = false;
 
@@ -101,7 +102,7 @@ public class CameraSwitch : MonoBehaviour
         StartCoroutine(GoTo(cameraPoses[(int)_cameraState].position));
     }
 
-    private IEnumerator ZoomInAndOut()
+    public IEnumerator ZoomInAndOut()
     {
         float elapsed = 0;
         Vector3 startPosition = transform.position;
@@ -121,6 +122,32 @@ public class CameraSwitch : MonoBehaviour
             float t = elapsed / zoomduration;
             Mathf.Clamp01(t);
             Camera.main.orthographicSize = Mathf.LerpUnclamped(5f, zoomForce, t);
+            yield return null;
+        }
+        Camera.main.orthographicSize = 5f;
+
+    }
+
+    public IEnumerator ZoomInAndOutPIXEL()
+    {
+        float elapsed = 0;
+        Vector3 startPosition = transform.position;
+
+        while (elapsed <= zoomduration)
+        {
+            print("IN");
+            elapsed += Time.deltaTime;
+            float t = elapsed / zoomduration;
+            Camera.main.orthographicSize = Mathf.LerpUnclamped(5f, zoomForcePixel, t);
+            yield return null;
+        }
+        while (elapsed > 0)
+        {
+            print("Out");
+            elapsed -= Time.deltaTime;
+            float t = elapsed / zoomduration;
+            Mathf.Clamp01(t);
+            Camera.main.orthographicSize = Mathf.LerpUnclamped(5f, zoomForcePixel, t);
             yield return null;
         }
         Camera.main.orthographicSize = 5f;
