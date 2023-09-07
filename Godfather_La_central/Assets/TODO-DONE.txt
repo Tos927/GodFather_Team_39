@@ -1,0 +1,17 @@
+ZoomForce : 4.8/4.7
+ZoomForcePixel : 4.3
+
+Light already on cube
+dark Light in the scene
+Camera
+
+Prof pour le Dernier Cycle de perfect
+
+Implementer les credits
+
+Verifier si Pixel ajoute le son
+
+INPUT FINIT NO TRUC
+
+
+VAVLE INPERDABLE A LA FIN
