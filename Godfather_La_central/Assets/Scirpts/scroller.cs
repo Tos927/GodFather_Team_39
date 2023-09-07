@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO.IsolatedStorage;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -82,8 +83,6 @@ public class scroller : MonoBehaviour
         }
         //isPerfectTempo();
 
-
-
         if (hasStarted)
         {
             if (!stop)
@@ -95,10 +94,20 @@ public class scroller : MonoBehaviour
     {
         if (hasStarted == false)
         {
+            while (!Input.anyKeyDown)
+            {
+                yield return null;
+            }
             gameManager.Starter();
             first = false;
-            print("JEXISTE");
             caisseObject = Instantiate(caissePrefabs, spawnPoint);
+            Camera.main.transform.parent = caisseObject.transform;
+            Camera.main.transform.position =
+                new Vector3 (
+                    caisseObject.transform.position.x + Camera.main.GetComponent<CameraSwitch>().offset,
+                    caisseObject.transform.position.y + .78f,
+                    Camera.main.transform.position.z
+                    );
         }
         yield return new WaitForSecondsRealtime(.99f);
         isbeat = true;
@@ -113,8 +122,19 @@ public class scroller : MonoBehaviour
             }
             if (!caisseObject.GetComponent<Node>().sucess)
             {
+                //FAIl
+                Camera.main.transform.parent = null;
                 Destroy(caisseObject);
                 caisseObject = Instantiate(caissePrefabs, spawnPoint);
+                Camera.main.transform.parent = caisseObject.transform;
+                Camera.main.transform.position = 
+                    new Vector3 (
+                    caisseObject.transform.position.x + Camera.main.GetComponent<CameraSwitch>().offset,
+                    caisseObject.transform.position.y + .78f,
+                     Camera.main.transform.position.z
+                    );
+                print("JEXISTE");
+
             }
         }
 
