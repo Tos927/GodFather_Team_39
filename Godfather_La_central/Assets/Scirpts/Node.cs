@@ -24,7 +24,6 @@ public class Node : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(nbBras);
         if (Input.GetKeyDown(keycode))
         {
             if(canBePressed)
@@ -45,13 +44,7 @@ public class Node : MonoBehaviour
             
         }
 
-/*        if (nbBras == 3 && nbcaisse != 3) 
-        {
-            nbBras = 0;
-            GameManager.instance.NodeHit();
-            gameObject.SetActive(false);
 
-        }*/
     }
 
 

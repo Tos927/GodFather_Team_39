@@ -85,8 +85,7 @@ public class scroller : MonoBehaviour
 
         if (hasStarted)
         {
-            if (!stop)
-                caisseObject.transform.position += new Vector3(tempo * Time.fixedDeltaTime, 0, 0);
+           caisseObject.transform.position += new Vector3(tempo * Time.fixedDeltaTime, 0, 0);
         }
     }
 
@@ -128,6 +127,7 @@ public class scroller : MonoBehaviour
             {
                 //FAIl
                 Camera.main.transform.parent = null;
+                print("failed");    
                 Destroy(caisseObject);
                 caisseObject = Instantiate(caissePrefabs, spawnPoint);
                 Camera.main.transform.parent = caisseObject.transform;
@@ -145,7 +145,6 @@ public class scroller : MonoBehaviour
         }
 
          
-        print(beat);
         StartCoroutine(EndBeat());
     }
     public IEnumerator EndBeat()
@@ -154,20 +153,5 @@ public class scroller : MonoBehaviour
         isbeat = false;
         StartCoroutine(DoBeat());
     }
-    public IEnumerator hashit()
-    {
-        while (!isbeat)
-        {
-            print("oui");
-            yield return null;
-        }
-        //print("AAAAAAAAAAAAA");
-        caisseObject = Instantiate(caissePrefabs, spawnPoint);
-        
-    }
 
-    public void failedHit()
-    {
-        caisseObject = Instantiate(caissePrefabs, spawnPoint);
-    }
 }
