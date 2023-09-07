@@ -41,13 +41,12 @@ public class Node : MonoBehaviour
             
         }
 
-        if (nbBras == 3 && nbcaisse != 3) 
+/*        if (nbBras == 3 && nbcaisse != 3) 
         {
             
-            GameManager.instance.NodeHit();
             gameObject.SetActive(false);
 
-        }
+        }*/
     }
 
 

@@ -62,24 +62,24 @@ public class CameraSwitch : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.Alpha1)) 
+        if (Input.GetKeyDown(KeyCode.K)) 
         {
             _cameraState = CameraStates.Camera1;
             DoCameraMoves();
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.L))
         {
             _cameraState = CameraStates.Camera2;
             DoCameraMoves();
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.M))
         {
             _cameraState = CameraStates.Camera3;
             DoCameraMoves();
         }
 
     }
-    CameraStates SetCameraState()
+    CameraStates SetCameraState(int state)
     {
 
         return CameraStates.Camera1;
@@ -104,7 +104,7 @@ public class CameraSwitch : MonoBehaviour
             yield return null;
         }
         _isSwitching = false;
-        print(_isSwitching);
+        //print(_isSwitching);
     }
     public void OnGUI()
     {

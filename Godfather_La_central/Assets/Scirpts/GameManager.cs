@@ -21,16 +21,19 @@ public class GameManager : MonoBehaviour
     {
         if(!startMusic && Input.anyKeyDown)
         {
-            startMusic = true;
-            scoller.hasStarted = true;
-            audio.Play();
+            //Starter();
         }
     }
-
+    public void Starter()
+    {
+        startMusic = true;
+        scoller.hasStarted = true;
+        audio.Play();
+    }
     public void NodeHit()
     {
         StartCoroutine(scoller.hashit());
-        Debug.Log("hit");
+        //Debug.Log("hit");
     }
     public void nodeStop()
     {

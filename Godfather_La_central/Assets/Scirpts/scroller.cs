@@ -9,12 +9,18 @@ public class scroller : MonoBehaviour
     public bool first = true;
     public bool stop = false;
     public float tempo;
+    public int beat;
+    public bool isbeat = false;
     public int nbCaisse = 3;
     public Transform spawnPoint;
     public GameObject caissePrefabs;
     public GameObject caisseObject;
 
     public float _timeFromStart;
+
+    public GameManager gameManager;
+
+
 
     float decalage = 0;
     //MARGE JOUEUR
@@ -26,21 +32,21 @@ public class scroller : MonoBehaviour
         float currentTime = _timeFromStart;
         //float currentTime = _timeFromStart - (int)_timeFromStart;
         float timeSinceLastBeat = currentTime % secondsPerBeat;
-        print(timeSinceLastBeat);
+        //print(timeSinceLastBeat);
         if (timeSinceLastBeat <= margin || timeSinceLastBeat >= secondsPerBeat - margin)
         {
-            print("true");
+            //print("true");
             return true;
         }
         else
         {
-            print("false");
+            //print("false");
             return false;
         }
     }
 
     // MARGE MACHINE
-    public bool PerfectTempo()
+    public bool isPerfectTempo()
     {
         float secondsPerBeat = 1;
         float margin = 0.01f;  
@@ -48,54 +54,88 @@ public class scroller : MonoBehaviour
         float currentTime = _timeFromStart;
 
         float timeSinceLastBeat = currentTime % secondsPerBeat;
-
+        //print(timeSinceLastBeat);
         if (timeSinceLastBeat <= margin || timeSinceLastBeat >= secondsPerBeat - margin)
         {
-            print("true");
-            decalage += timeSinceLastBeat - 1;
-            print(decalage);
+            //print("true");
             return true;
         }
         else
         {
-            print("false");
+            //print("false");
             return false;
         }
     }
 
     private void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
+        stop = false;
+        StartCoroutine(DoBeat());
         tempo /= 10;
     }
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
         if (hasStarted)
         {
-            _timeFromStart += Time.deltaTime;
+            _timeFromStart += Time.fixedDeltaTime;
         }
+        //isPerfectTempo();
 
-        if(hasStarted)
+
+
+        if (hasStarted)
         {
-            if(first)
-            {
-                first = false;
-                caisseObject = Instantiate(caissePrefabs, spawnPoint);
-            }
-
-            if(!stop)
-                caisseObject.transform.position += new Vector3(tempo * Time.deltaTime, 0, 0);
+            if (!stop)
+                caisseObject.transform.position += new Vector3(tempo * Time.fixedDeltaTime, 0, 0);
         }
     }
 
+    public IEnumerator DoBeat()
+    {
+        if (hasStarted == false)
+        {
+            gameManager.Starter();
+            first = false;
+            print("JEXISTE");
+            caisseObject = Instantiate(caissePrefabs, spawnPoint);
+        }
+        yield return new WaitForSecondsRealtime(.99f);
+        isbeat = true;
+        beat++;
+
+        if (beat == 4)
+        {
+            beat = 0;
+            if (caisseObject.GetComponent<Node>().sucess)
+            {
+                //REUSSITE
+            }
+            if (!caisseObject.GetComponent<Node>().sucess)
+            {
+                Destroy(caisseObject);
+                caisseObject = Instantiate(caissePrefabs, spawnPoint);
+            }
+        }
+
+         
+        print(beat);
+        StartCoroutine(EndBeat());
+    }
+    public IEnumerator EndBeat()
+    {
+        yield return new WaitForSecondsRealtime(.02f);
+        isbeat = false;
+        StartCoroutine(DoBeat());
+    }
     public IEnumerator hashit()
     {
-        while (!PerfectTempo())
+        while (!isbeat)
         {
             print("oui");
             yield return null;
         }
-        print("AAAAAAAAAAAAA");
+        //print("AAAAAAAAAAAAA");
         caisseObject = Instantiate(caissePrefabs, spawnPoint);
         
     }
