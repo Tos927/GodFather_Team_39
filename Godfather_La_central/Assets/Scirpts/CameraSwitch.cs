@@ -53,13 +53,17 @@ public class CameraSwitch : MonoBehaviour
     {
         //print(CameraState);
         //decoup.Startmodule();
+        gameManager = FindObjectOfType<GameManager>();
         _time = 0;
         audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
-        transform.position += Vector3.left * cameraSpeed * .01f;
+        if (gameManager.scoller.hasStarted)
+        {
+            transform.position += Vector3.left * cameraSpeed * .01f;
+        }
 
         if (Input.GetKeyDown(KeyCode.O)) StartCoroutine(ZoomInAndOut());
 
