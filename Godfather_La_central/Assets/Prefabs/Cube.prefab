@@ -121,6 +121,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keycode: 32
   canBePressed: 0
+  gotPressed: 0
+  nbcaisse: 0
+  nbBras: 0
+  sucess: 0
 --- !u!54 &-6270665925721564693
 Rigidbody:
   m_ObjectHideFlags: 0

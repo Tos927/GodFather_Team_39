@@ -18,7 +18,6 @@ public class scroller : MonoBehaviour
     public bool isTempoRight()
     {
         float tempo = _timeFromStart - Mathf.Floor(_timeFromStart);
-        print(tempo);
         if (_timeFromStart >= 0.9f || _timeFromStart <=  0.1f)
         {
             print("true");
@@ -60,10 +59,8 @@ public class scroller : MonoBehaviour
     {
         while (!isTempoRight())
         {
-            print("oui");
             yield return null;
         }
-        print("AAAAAAAAAAAAA");
         caisseObject = Instantiate(caissePrefabs, spawnPoint);
         
     }

@@ -18,23 +18,27 @@ public class Node : MonoBehaviour
     void Start()
     {
         gameManager = GameManager.instance;
+        nbBras = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(keycode))
+        print(nbBras);
+        if (Input.GetKeyDown(keycode))
         {
             if(canBePressed)
             {
+                GameManager.instance.nodeStart(nbBras);
                 nbcaisse++;
                 gotPressed = true;
-                GameManager.instance.nodeStart();
+                GameManager.instance.NodeHitPerfect();
                 if (nbcaisse == 3)
                 {
                     sucess = true;
-                    gameManager.cameraSwitch.CameraState += 1;
-                    gameManager.cameraSwitch.DoCameraMoves();
+                    nbBras = 0;
+                    //gameManager.cameraSwitch.CameraState += 1;
+                    //gameManager.cameraSwitch.DoCameraMoves();
                 }
                 
             }
@@ -43,7 +47,7 @@ public class Node : MonoBehaviour
 
         if (nbBras == 3 && nbcaisse != 3) 
         {
-            
+            nbBras = 0;
             GameManager.instance.NodeHit();
             gameObject.SetActive(false);
 
