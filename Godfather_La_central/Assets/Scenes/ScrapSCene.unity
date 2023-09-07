@@ -188,11 +188,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasStarted: 0
   first: 1
-  tempo: 55
+  stop: 0
+  tempo: 45
+  beat: 0
+  isbeat: 0
   nbCaisse: 3
   spawnPoint: {fileID: 692725814}
   caissePrefabs: {fileID: 3613186422585697547, guid: cf40f61c65c39ac409310406370f804e, type: 3}
   caisseObject: {fileID: 0}
+  _timeFromStart: 0
+  gameManager: {fileID: 0}
 --- !u!114 &100056274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,7 +212,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audio: {fileID: 1087404199}
   startMusic: 0
+  pass: 0
   scoller: {fileID: 100056273}
+  steps: {fileID: 0}
   cameraSwitch: {fileID: 1121408298}
 --- !u!1 &331670526
 GameObject:

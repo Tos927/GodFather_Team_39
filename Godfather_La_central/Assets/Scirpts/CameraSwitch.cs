@@ -11,6 +11,8 @@ public class CameraSwitch : MonoBehaviour
 
     GameManager gameManager;
 
+    public float offset = 5;
+
     private AudioSource audioSource;
     public float TimeToChange = .2f;
 
@@ -18,6 +20,8 @@ public class CameraSwitch : MonoBehaviour
     public List<Transform> cameraPoses = new List<Transform>();
     public AnimationCurve PosOverTime;
     public float duration = .5f;
+    public float zoomduration = .2f;
+    public float zoomForce = 4.5f;
     private Vector3 OldPosition;
     private bool _doCameraMovs = false;
 
@@ -55,39 +59,70 @@ public class CameraSwitch : MonoBehaviour
 
     void Update()
     {
-        transform.position += Vector3.right * cameraSpeed * .01f;
-        if(transform.position.x >= cameraPoses[(int)_cameraState].position.x + 2 && !_isSwitching)
-        {
-            DoCameraMoves();
-        }
+        transform.position += Vector3.left * cameraSpeed * .01f;
 
+        if (Input.GetKeyDown(KeyCode.O)) StartCoroutine(ZoomInAndOut());
 
-        if (Input.GetKeyDown(KeyCode.Alpha1)) 
+        if (Input.GetKeyDown(KeyCode.K)) 
         {
             _cameraState = CameraStates.Camera1;
             DoCameraMoves();
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.L))
         {
             _cameraState = CameraStates.Camera2;
             DoCameraMoves();
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.M))
         {
             _cameraState = CameraStates.Camera3;
             DoCameraMoves();
         }
 
     }
-    CameraStates SetCameraState()
+    public CameraStates SetCameraState(int state)
     {
-
-        return CameraStates.Camera1;
+        CameraStates c = (CameraStates)state;
+        _cameraState = c;
+        return c;
+    }
+    public CameraStates AddCameraState()
+    {
+        _cameraState++;
+        return _cameraState;
     }
     public void DoCameraMoves()
     {
         StartCoroutine(GoTo(cameraPoses[(int)_cameraState].position));
     }
+
+    private IEnumerator ZoomInAndOut()
+    {
+        float elapsed = 0;
+        Vector3 startPosition = transform.position;
+
+        while (elapsed <= zoomduration)
+        {
+            print("IN");
+            elapsed += Time.deltaTime;
+            float t = elapsed / zoomduration;
+            Camera.main.orthographicSize = Mathf.LerpUnclamped(5f, zoomForce, t);
+            yield return null;
+        }
+        while (elapsed > 0)
+        {
+            print("Out");
+            elapsed -= Time.deltaTime;
+            float t = elapsed / zoomduration;
+            Mathf.Clamp01(t);
+            Camera.main.orthographicSize = Mathf.LerpUnclamped(5f, zoomForce, t);
+            yield return null;
+        }
+        Camera.main.orthographicSize = 5f;
+
+    }
+
+
     private IEnumerator GoTo(Vector3 endPosition)
     {
         float elapsed = 0;
@@ -104,7 +139,7 @@ public class CameraSwitch : MonoBehaviour
             yield return null;
         }
         _isSwitching = false;
-        print(_isSwitching);
+        //print(_isSwitching);
     }
     public void OnGUI()
     {

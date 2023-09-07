@@ -26,20 +26,20 @@ public class GameManager : MonoBehaviour
     {
         if(!startMusic && Input.anyKeyDown)
         {
-            startMusic = true;
-            scoller.hasStarted = true;
-            foreach(AudioSource audiosources in audioGen)
-            {
-                audiosources.Play();
-                audiosources.volume = 0;
-            }
-            audioGen[0].volume = 100;
-
-
-
+            Starter();
         }
     }
-    
+    public void Starter()
+    {
+        startMusic = true;
+        StartCoroutine(scoller.DoBeat());
+        foreach (AudioSource audiosources in audioGen)
+        {
+            audiosources.Play();
+            audiosources.volume = 0;
+        }
+        audioGen[0].volume = 100;
+    }
     public void NodeHit()
     {
         /*audioGen.clip = clips[0];
@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
             audioGen[nbclip].volume = 100;
 
         StartCoroutine(scoller.hashit());
-        Debug.Log("hit");
+        //Debug.Log("hit");
     }
     public void NodeHitPerfect()
     {
