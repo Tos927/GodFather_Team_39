@@ -211,12 +211,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a31f75e0c4b2eb44783c304527eca7d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio: {fileID: 1087404199}
+  audioGen: []
+  audioTube: {fileID: 0}
+  clips: []
+  tubeAnim: {fileID: 0}
+  ScieAnim: {fileID: 0}
+  nbclip: 0
   startMusic: 0
   pass: 0
   scoller: {fileID: 100056273}
   steps: {fileID: 0}
-  cameraSwitch: {fileID: 0}
+  cameraSwitch: {fileID: 1121408298}
 --- !u!114 &100056275
 MonoBehaviour:
   m_ObjectHideFlags: 0

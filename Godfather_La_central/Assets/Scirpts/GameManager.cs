@@ -26,24 +26,19 @@ public class GameManager : MonoBehaviour
     {
         if(!startMusic && Input.anyKeyDown)
         {
-            startMusic = true;
-            scoller.hasStarted = true;
-            foreach(AudioSource audiosources in audioGen)
-            {
-                audiosources.Play();
-                audiosources.volume = 0;
-            }
-            audioGen[0].volume = 100;
-
-
-
+            Starter();
         }
     }
     public void Starter()
     {
         startMusic = true;
-        scoller.hasStarted = true;
-        audio.Play();
+        StartCoroutine(scoller.DoBeat());
+        foreach (AudioSource audiosources in audioGen)
+        {
+            audiosources.Play();
+            audiosources.volume = 0;
+        }
+        audioGen[0].volume = 100;
     }
     public void NodeHit()
     {

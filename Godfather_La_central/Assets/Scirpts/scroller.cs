@@ -72,7 +72,7 @@ public class scroller : MonoBehaviour
     {
         gameManager = FindObjectOfType<GameManager>();
         stop = false;
-        StartCoroutine(DoBeat());
+        //StartCoroutine(DoBeat());
         tempo /= 10;
     }
     private void FixedUpdate()
@@ -96,9 +96,10 @@ public class scroller : MonoBehaviour
         {
             while (!Input.anyKeyDown)
             {
+                hasStarted = true;
+                gameManager.Starter();
                 yield return null;
             }
-            gameManager.Starter();
             first = false;
             caisseObject = Instantiate(caissePrefabs, spawnPoint);
             Camera.main.transform.parent = caisseObject.transform;
@@ -119,6 +120,9 @@ public class scroller : MonoBehaviour
             if (caisseObject.GetComponent<Node>().sucess)
             {
                 //REUSSITE
+                gameManager.cameraSwitch.AddCameraState();
+                gameManager.cameraSwitch.DoCameraMoves();
+
             }
             if (!caisseObject.GetComponent<Node>().sucess)
             {
@@ -127,13 +131,15 @@ public class scroller : MonoBehaviour
                 Destroy(caisseObject);
                 caisseObject = Instantiate(caissePrefabs, spawnPoint);
                 Camera.main.transform.parent = caisseObject.transform;
+                //gameManager.cameraSwitch.DoCameraMoves();
+                //yield return new WaitForSeconds(gameManager.cameraSwitch.duration;
                 Camera.main.transform.position = 
                     new Vector3 (
                     caisseObject.transform.position.x + Camera.main.GetComponent<CameraSwitch>().offset,
                     caisseObject.transform.position.y + .78f,
-                     Camera.main.transform.position.z
+                    Camera.main.transform.position.z
                     );
-                print("JEXISTE");
+                //print("JEXISTE");
 
             }
         }

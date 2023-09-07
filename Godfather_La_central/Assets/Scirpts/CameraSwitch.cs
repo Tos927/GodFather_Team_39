@@ -80,13 +80,13 @@ public class CameraSwitch : MonoBehaviour
         }
 
     }
-    CameraStates SetCameraState(int state)
+    public CameraStates SetCameraState(int state)
     {
         CameraStates c = (CameraStates)state;
         _cameraState = c;
         return c;
     }
-    CameraStates AddCameraState()
+    public CameraStates AddCameraState()
     {
         _cameraState++;
         return _cameraState;
