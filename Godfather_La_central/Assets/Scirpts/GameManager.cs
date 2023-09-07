@@ -58,7 +58,6 @@ public class GameManager : MonoBehaviour
         else
             audioGen[nbclip].volume = 100;
 
-        StartCoroutine(scoller.hashit());
         //Debug.Log("hit");
     }
     public void NodeHitPerfect()
@@ -102,7 +101,6 @@ public class GameManager : MonoBehaviour
     
     public void NodeFailed()
     {
-        scoller.failedHit();
         Debug.Log("miss");
     }
 }
