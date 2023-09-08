@@ -94,8 +94,27 @@ public class Node : MonoBehaviour
             gotPressed = true;
             if (canPerfect())
             {
-                print("YA/GO/IT");
-                gameManager.NodeHitPerfect();
+                gameManager.nodeStart(nbBras);
+                nbcaisse++;
+                gotPressed = true;
+                if(canPerfect()) 
+                {
+                    print("YA/GO/IT");
+                    gameManager.NodeHitPerfect();
+                }
+                else
+                {
+                    gameManager.NodeHit();
+                }
+                if (nbcaisse == 3)
+                {
+                    sucess = true;
+                    nbBras = 0;
+                    GameManager.instance.sequence++;
+                    //gameManager.cameraSwitch.CameraState += 1;
+                    //gameManager.cameraSwitch.DoCameraMoves();
+                }
+                
             }
             else
             {
