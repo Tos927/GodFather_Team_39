@@ -94,18 +94,18 @@ public class scroller : MonoBehaviour
             hasStarted = true;
 
             caisseObject = Instantiate(caissePrefabs, spawnPoint);
-            Camera.main.transform.parent = caisseObject.transform;
+            /*Camera.main.transform.parent = caisseObject.transform;
             Camera.main.transform.position =
                 new Vector3 (
                     caisseObject.transform.position.x + Camera.main.GetComponent<CameraSwitch>().offset,
                     caisseObject.transform.position.y + 0.78f,
                     Camera.main.transform.position.z
-                    );
+                    );*/
         }
         yield return new WaitForSecondsRealtime(1f);
         beat++;
 
-        if (beat == 4)
+        if (beat == 4 && caisseObject.GetComponent<Node>().nbBras >= 3)
         {
             beat = 0;
             if (caisseObject.GetComponent<Node>().sucess)
@@ -113,24 +113,25 @@ public class scroller : MonoBehaviour
                 //REUSSITE
                 gameManager.cameraSwitch.AddCameraState();
                 gameManager.cameraSwitch.DoCameraMoves();
+                caisseObject.GetComponent<Node>().sucess = false;
 
             }
             else if (!caisseObject.GetComponent<Node>().sucess)
             {
                 //FAIl
-                Camera.main.transform.parent = null;
+                //Camera.main.transform.parent = null;
                 print("failed");    
                 Destroy(caisseObject);
                 caisseObject = Instantiate(caissePrefabs, spawnPoint);
-                Camera.main.transform.parent = caisseObject.transform;
+               // Camera.main.transform.parent = caisseObject.transform;
                 //gameManager.cameraSwitch.DoCameraMoves();
                 //yield return new WaitForSeconds(gameManager.cameraSwitch.duration;
-                Camera.main.transform.position = 
-                    new Vector3 (
+                //Camera.main.transform.position = 
+                    /*new Vector3 (
                     caisseObject.transform.position.x + Camera.main.GetComponent<CameraSwitch>().offset,
                     caisseObject.transform.position.y + .78f,
                     Camera.main.transform.position.z
-                    );
+                    );*/
 
             }
         }

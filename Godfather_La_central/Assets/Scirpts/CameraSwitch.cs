@@ -64,7 +64,7 @@ public class CameraSwitch : MonoBehaviour
     {
         if (gameManager.scoller.hasStarted)
         {
-            transform.position += Vector3.left * cameraSpeed * .01f * Time.deltaTime;
+            //transform.position += Vector3.left * cameraSpeed * .01f * Time.deltaTime;
         }
 
         if (Input.GetKeyDown(KeyCode.O)) StartCoroutine(ZoomInAndOut());
@@ -133,7 +133,6 @@ public class CameraSwitch : MonoBehaviour
 
         while (elapsed <= zoomduration)
         {
-            print("IN");
             elapsed += Time.deltaTime;
             float t = elapsed / zoomduration;
             Camera.main.orthographicSize = Mathf.LerpUnclamped(5f, zoomForcePixel, t);
@@ -141,7 +140,6 @@ public class CameraSwitch : MonoBehaviour
         }
         while (elapsed > 0)
         {
-            print("Out");
             elapsed -= Time.deltaTime;
             float t = elapsed / zoomduration;
             Mathf.Clamp01(t);
