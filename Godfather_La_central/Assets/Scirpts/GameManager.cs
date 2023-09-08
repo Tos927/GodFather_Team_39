@@ -33,9 +33,19 @@ public class GameManager : MonoBehaviour
     public int ComboCredits = 6; //48 3*4*4 // 4 cycles 
     public bool IsInComboCredits = false;
 
+    public Blackboard Blackboard;
+    public List<Blackboard.Action> actionList = new List<Blackboard.Action>();
+    public int InputToGet = 0;
+
+    public int AddInputToGet()
+    {
+        return InputToGet++;
+    } 
 
     private void Start()
     {
+        Blackboard = FindObjectOfType<Blackboard>();
+        actionList = Blackboard.actionList;
         instance = this;
     }
     // Update is called once per frame

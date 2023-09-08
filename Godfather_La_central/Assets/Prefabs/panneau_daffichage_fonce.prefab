@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5647922237586287078
 Transform:
   m_ObjectHideFlags: 0
@@ -110,7 +110,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3866739284722975605}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.61442, y: 1.6018002, z: 1.4753886}
   m_LocalScale: {x: 0.82322, y: 0.82322, z: 0.82322}
   m_ConstrainProportionsScale: 0
@@ -196,6 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1e9e9e7c6c41c449c970c0b635afc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   Sprites:
   - {fileID: 5769486691501551637}
   - {fileID: 4840792838185408083}
@@ -214,8 +215,9 @@ MonoBehaviour:
   - {fileID: 4076291535666087657}
   timeToSwap: 0.3
   actionList:
-  - inputs: 03000000050000000a000000
-  - inputs: 
+  - inputs: 0300000005000000
+  - inputs: 030000000500000006000000
+  - inputs: 04000000
 --- !u!1 &4076291535666087657
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4646828131993187347
 Transform:
   m_ObjectHideFlags: 0
@@ -988,7 +990,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8296676221049801843
 Transform:
   m_ObjectHideFlags: 0
@@ -1240,7 +1242,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &9030426062416943756
 Transform:
   m_ObjectHideFlags: 0

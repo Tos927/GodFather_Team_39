@@ -118,6 +118,7 @@ public class scroller : MonoBehaviour
             else if (!caisseObject.GetComponent<Node>().sucess)
             {
                 //FAIl
+                gameManager.InputToGet = 0;
                 Camera.main.transform.parent = null;
                 print("failed");    
                 Destroy(caisseObject);

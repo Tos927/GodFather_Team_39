@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Blackboard : MonoBehaviour
 {
+    public GameManager gameManager;
     public List<GameObject> Sprites;
     private List<GameObject> SpritesToLit = new List<GameObject>();
 
@@ -12,11 +13,14 @@ public class Blackboard : MonoBehaviour
 
     public List<Action> actionList = new List<Action>();
 
+    bool booldo = false;
+
     [System.Serializable]
     public struct Action
     {
         public List<LALIST> inputs;
     }
+
 
     [System.Serializable]
     public enum LALIST
@@ -32,10 +36,11 @@ public class Blackboard : MonoBehaviour
         Bouton3,
         Bouton4,
         Bouton5,
-        Bouton6
+        Bouton6,
+        nulll
     }
 
-    void DecodeInputs(List<LALIST> Actions)
+    public void DecodeInputs(List<LALIST> Actions)
     {
         if(lastCoroutine != null) StopCoroutine(lastCoroutine);
 
@@ -63,20 +68,26 @@ public class Blackboard : MonoBehaviour
                 case (LALIST)11: SpritesToLit.Add(Sprites[11]); break;
 
             }
-            lastCoroutine = StartCoroutine(ArrowOn());
+            if (booldo)
+            {
+                //print("hsadone");
+                lastCoroutine = StartCoroutine(ArrowOn());
+            }
         }
     }
 
     void Start()
     {
-        //DecodeInputs(actionList[0].inputs);
-    }
-
-    // Update is called once per frame
-    void OnValidate()
-    {
+        booldo = true;
+        gameManager = FindObjectOfType<GameManager>();
+        //print(gameManager.InputToGet);
         DecodeInputs(actionList[0].inputs);
     }
+
+    /*void OnValidate()
+    {
+        DecodeInputs(actionList[0].inputs);
+    }*/
 
     IEnumerator ArrowOn()
     {

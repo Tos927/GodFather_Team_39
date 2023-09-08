@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class SubNode : MonoBehaviour
 {
-
+    GameManager gameManager;
+    private void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
     public bool isPerfect = false;
 
     private void OnCollisionEnter(Collision collision)
@@ -18,7 +22,11 @@ public class SubNode : MonoBehaviour
     {
         if (collision.gameObject.tag == "pixel")
         {
+            gameManager.AddInputToGet();
+            gameManager.Blackboard.DecodeInputs(gameManager.actionList[gameManager.InputToGet].inputs);
+
             isPerfect = false;
+
         }
     }
 

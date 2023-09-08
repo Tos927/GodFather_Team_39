@@ -109,7 +109,7 @@ public class CameraSwitch : MonoBehaviour
 
         while (elapsed <= zoomduration)
         {
-            print("IN");
+            //print("IN");
             elapsed += Time.deltaTime;
             float t = elapsed / zoomduration;
             Camera.main.orthographicSize = Mathf.LerpUnclamped(5f, zoomForce, t);
@@ -117,7 +117,7 @@ public class CameraSwitch : MonoBehaviour
         }
         while (elapsed > 0)
         {
-            print("Out");
+            //print("Out");
             elapsed -= Time.deltaTime;
             float t = elapsed / zoomduration;
             Mathf.Clamp01(t);
@@ -135,7 +135,7 @@ public class CameraSwitch : MonoBehaviour
 
         while (elapsed <= zoomduration)
         {
-            print("IN");
+            //print("IN");
             elapsed += Time.deltaTime;
             float t = elapsed / zoomduration;
             Camera.main.orthographicSize = Mathf.LerpUnclamped(5f, zoomForcePixel, t);
@@ -143,7 +143,7 @@ public class CameraSwitch : MonoBehaviour
         }
         while (elapsed > 0)
         {
-            print("Out");
+            //print("Out");
             elapsed -= Time.deltaTime;
             float t = elapsed / zoomduration;
             Mathf.Clamp01(t);
