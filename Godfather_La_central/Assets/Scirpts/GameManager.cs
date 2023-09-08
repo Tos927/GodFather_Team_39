@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -20,6 +21,9 @@ public class GameManager : MonoBehaviour
     public Animator mainAnim2;
     public Animator scotchAnim;
     public Animator oiseauAnim;
+
+    public Animator End;
+
     public int nbclip = 0;
     public bool startMusic = false;
     public static GameManager instance;
@@ -33,12 +37,17 @@ public class GameManager : MonoBehaviour
     public bool IsCyclesPerfect = true;
     public int PerfectCombo = 0;
 
+    public int combo = 0;
+    public int endcombo = 48;
 
     public int ComboStart = 2; //6
     public bool IsInCombo = false;
 
+
+    public GameObject Prof;
     public int ComboFolieStart = 4; //24 // 2 Cycles
     public bool IsInComboFolie = false;
+
 
 
     public int ComboCredits = 6; //48 3*4*4 // 4 cycles 
@@ -47,7 +56,25 @@ public class GameManager : MonoBehaviour
     public List<Blackboard> Blackboards;
     public List<Blackboard.Action> actionList = new List<Blackboard.Action>();
     public int InputToGet = 0;
+    public int InputToShow = 0;
 
+    public int AddInputToShow(int i)
+    {
+        InputToShow += i;
+        foreach (Blackboard b in Blackboards)
+        {
+            b.DecodeInputs(actionList[InputToShow].inputs);
+        }
+        return InputToShow;
+    }
+    public int SetInputToShow(int i)
+    {
+        foreach (Blackboard b in Blackboards)
+        {
+            b.DecodeInputs(actionList[i].inputs);
+        }
+        return InputToShow = i;
+    }
     public int AddInputToGet(int i)
     {
         InputToGet += i;
@@ -96,8 +123,14 @@ public class GameManager : MonoBehaviour
         /*audioGen.clip = clips[0];
         nbclip = 0;
         audioGen.Play();*/
-
-        //looseCombo
+        combo++;
+        if(combo >= endcombo)
+        {
+            print(combo);
+            End.SetTrigger("EE");
+        }
+        //looseComboPerffect
+        Prof.SetActive(false);
         PerfectCombo = 0;
         foreach (AudioSource audiosources in audioGen)
         {
@@ -119,7 +152,11 @@ public class GameManager : MonoBehaviour
 
         //COMBO
         PerfectCombo++;
-        if(PerfectCombo == ComboStart)
+        if (PerfectCombo >= ComboFolieStart)
+        {
+            Prof.SetActive(true);
+        }
+        if (PerfectCombo == ComboStart)
         {
             IsInCombo = true;
         }

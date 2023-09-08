@@ -13,6 +13,10 @@ public class SubNode : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if(collision.gameObject.tag == "zone")
+        {
+            gameManager.AddInputToShow(1);
+        }
         if (collision.gameObject.tag == "pixel")
         {
             isPerfect = true;
@@ -21,9 +25,7 @@ public class SubNode : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.tag == "pixel")
-        {
-            gameManager.AddInputToGet(1);
-
+        { 
             isPerfect = false;
 
         }

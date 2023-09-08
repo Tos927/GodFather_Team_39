@@ -118,6 +118,7 @@ public class scroller : MonoBehaviour
                 if(caisseObject.GetComponent<Node>().sequence >= 4)
                 {
                     gameManager.SetInputToGet(0);
+                    gameManager.SetInputToShow(0);
                     Destroy(caisseObject);
                     caisseObject = Instantiate(caissePrefabs, spawnPoints[0]);
                 }
@@ -130,6 +131,7 @@ public class scroller : MonoBehaviour
                 print(caisseObject.GetComponent<Node>().sequence);
                 int seq = caisseObject.GetComponent<Node>().sequence;
                 Destroy(caisseObject);
+                gameManager.AddInputToShow(-3);
                 gameManager.AddInputToGet(-3);
                 caisseObject = Instantiate(caissePrefabs, spawnPoints[caisseObject.GetComponent<Node>().sequence]);
                 caisseObject.GetComponent<Node>().sequence = seq;

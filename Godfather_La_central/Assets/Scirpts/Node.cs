@@ -294,8 +294,9 @@ public class Node : MonoBehaviour
         //Debug.Log("out");
         if (collision.gameObject.tag == "zone")
         {
-                //print(collision.gameObject.name);
-                canBePressed = false;
+            //print(collision.gameObject.name);
+            gameManager.AddInputToGet(1);
+            canBePressed = false;
                 nbBras++;
                 gotPressed = false;
             
