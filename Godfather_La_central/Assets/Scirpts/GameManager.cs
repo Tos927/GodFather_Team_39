@@ -172,7 +172,7 @@ public class GameManager : MonoBehaviour
         else if (sequence == 3)
         {
               if (x == 0)
-                mainAnim.SetBool("bool", true);
+                mainAnim2.SetBool("bool", true);
             else if (x == 1)
                 scotchAnim.SetBool("bool", true);
             else if (x >= 2)
@@ -183,7 +183,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator resetAnim(int x)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.8f);
 
         if (sequence == 0)
         {
