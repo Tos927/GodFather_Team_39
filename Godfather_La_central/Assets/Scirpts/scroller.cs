@@ -94,8 +94,8 @@ public class scroller : MonoBehaviour
             hasStarted = true;
 
             caisseObject = Instantiate(caissePrefabs, spawnPoint);
-            /*Camera.main.transform.parent = caisseObject.transform;
-            Camera.main.transform.position =
+            //Camera.main.transform.parent = caisseObject.transform;
+            /*Camera.main.transform.position =
                 new Vector3 (
                     caisseObject.transform.position.x + Camera.main.GetComponent<CameraSwitch>().offset,
                     caisseObject.transform.position.y + 0.78f,

@@ -99,7 +99,7 @@ public class CameraSwitch : MonoBehaviour
     }
     public void DoCameraMoves()
     {
-        StartCoroutine(GoTo(cameraPoses[(int)_cameraState].position));
+        StartCoroutine(GoTo(cameraPoses[GameManager.instance.sequence].position));
     }
 
     public IEnumerator ZoomInAndOut()
@@ -154,7 +154,7 @@ public class CameraSwitch : MonoBehaviour
     private IEnumerator GoTo(Vector3 endPosition)
     {
         float elapsed = 0;
-
+        yield return new WaitForSeconds(0.4f);
         Vector3 startPosition = transform.position;
 
         while (elapsed <= duration)
