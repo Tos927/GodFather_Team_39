@@ -12,8 +12,8 @@ public class Node : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public bool canBePressed = false;
     public bool gotPressed = false;
-    public int nbcaisse = 0;
-    public int nbBras = 0;
+    public int nbcaisse = 0; // zone passé réussi
+    public int nbBras = 0; // zone passé meme si non réussi
     public int sequence = 0;
     public bool sucess = false;
     public bool perfect = false;
