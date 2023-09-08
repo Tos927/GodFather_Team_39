@@ -11,6 +11,7 @@ public class scroller : MonoBehaviour
     public float tempo;
     public int beat = 0;
     public Transform spawnPoint;
+    public Transform[] spawnPoints;
     public GameObject caissePrefabs;
     public GameObject caisseObject;
 
@@ -94,6 +95,8 @@ public class scroller : MonoBehaviour
             hasStarted = true;
 
             caisseObject = Instantiate(caissePrefabs, spawnPoint);
+
+
             //Camera.main.transform.parent = caisseObject.transform;
             /*Camera.main.transform.position =
                 new Vector3 (
@@ -104,34 +107,57 @@ public class scroller : MonoBehaviour
         }
         yield return new WaitForSecondsRealtime(1f);
         beat++;
-
-        if (beat == 4 && caisseObject.GetComponent<Node>().nbBras >= 3)
+        if (beat >= 4 && caisseObject.GetComponent<Node>().nbBras >= 3)
         {
             beat = 0;
             if (caisseObject.GetComponent<Node>().sucess)
             {
                 //REUSSITE
+                
+                caisseObject.GetComponent<Node>().sucess = false;
+                if(caisseObject.GetComponent<Node>().sequence >= 4)
+                {
+                    Destroy(caisseObject);
+                    caisseObject = Instantiate(caissePrefabs, spawnPoints[0]);
+                }
                 gameManager.cameraSwitch.AddCameraState();
                 gameManager.cameraSwitch.DoCameraMoves();
-                caisseObject.GetComponent<Node>().sucess = false;
-
             }
             else if (!caisseObject.GetComponent<Node>().sucess)
             {
                 //FAIl
-                //Camera.main.transform.parent = null;
-                print("failed");    
+                print(caisseObject.GetComponent<Node>().sequence);
+                int seq = caisseObject.GetComponent<Node>().sequence;
                 Destroy(caisseObject);
-                caisseObject = Instantiate(caissePrefabs, spawnPoint);
-               // Camera.main.transform.parent = caisseObject.transform;
+
+                caisseObject = Instantiate(caissePrefabs, spawnPoints[caisseObject.GetComponent<Node>().sequence]);
+                caisseObject.GetComponent<Node>().sequence = seq;
+                caisseObject.GetComponent<Node>().sequencing();
+                print("failed");
+                //Camera.main.transform.parent = null;
+                /*if (caisseObject.GetComponent<Node>().sequence <= 1)
+                {
+                    
+                    Destroy(caisseObject);
+                    caisseObject = Instantiate(caissePrefabs, spawnPoint);
+
+                }
+                else
+                {
+                    print("failed twice");
+
+                    
+                }*/
+
+                // Camera.main.transform.parent = caisseObject.transform;
                 //gameManager.cameraSwitch.DoCameraMoves();
                 //yield return new WaitForSeconds(gameManager.cameraSwitch.duration;
                 //Camera.main.transform.position = 
-                    /*new Vector3 (
-                    caisseObject.transform.position.x + Camera.main.GetComponent<CameraSwitch>().offset,
-                    caisseObject.transform.position.y + .78f,
-                    Camera.main.transform.position.z
-                    );*/
+                /*new Vector3 (
+                caisseObject.transform.position.x + Camera.main.GetComponent<CameraSwitch>().offset,
+                caisseObject.transform.position.y + .78f,
+                Camera.main.transform.position.z
+                );*/
 
             }
         }

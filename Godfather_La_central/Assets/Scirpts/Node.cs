@@ -61,57 +61,60 @@ public class Node : MonoBehaviour
                     nbcaisse = 0;
                     GameManager.instance.sequence++;
                     sequence = GameManager.instance.sequence;
-                    gameManager.cameraSwitch.CameraState += 1;
-                    gameManager.cameraSwitch.DoCameraMoves();
+                    /*gameManager.cameraSwitch.CameraState += 1;
+                    gameManager.cameraSwitch.DoCameraMoves();*/
                 }
 
             }
             print("sequence " + sequence);
-            if(sequence == 1)
-            {
-                this.GetComponentsInChildren<SpriteRenderer>()[0].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[2].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[4].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[3].enabled = false;
-
-                this.GetComponentsInChildren<SpriteRenderer>()[4].enabled = true;
-            }
-            else if(sequence == 2) 
-            {
-                this.GetComponentsInChildren<SpriteRenderer>()[0].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[2].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[4].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[3].enabled = false;
-
-                this.GetComponentsInChildren<SpriteRenderer>()[3].enabled = true;
-            }
-            else if (sequence == 3)
-            {
-                this.GetComponentsInChildren<SpriteRenderer>()[0].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[2].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[4].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[3].enabled = false;
-
-                this.GetComponentsInChildren<SpriteRenderer>()[2].enabled = true;
-            }
-            else if (sequence == 4)
-            {
-                this.GetComponentsInChildren<SpriteRenderer>()[0].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[2].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[4].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[3].enabled = false;
-
-                this.GetComponentsInChildren<SpriteRenderer>()[1].enabled = true;
-            }
+            sequencing();
         }
             
     }
 
+    public void sequencing()
+    {
+        if (sequence == 1)
+        {
+            this.GetComponentsInChildren<SpriteRenderer>()[0].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[2].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[4].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[3].enabled = false;
 
+            this.GetComponentsInChildren<SpriteRenderer>()[4].enabled = true;
+        }
+        else if (sequence == 2)
+        {
+            this.GetComponentsInChildren<SpriteRenderer>()[0].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[2].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[4].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[3].enabled = false;
+
+            this.GetComponentsInChildren<SpriteRenderer>()[3].enabled = true;
+        }
+        else if (sequence == 3)
+        {
+            this.GetComponentsInChildren<SpriteRenderer>()[0].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[2].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[4].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[3].enabled = false;
+
+            this.GetComponentsInChildren<SpriteRenderer>()[2].enabled = true;
+        }
+        else if (sequence == 4)
+        {
+            this.GetComponentsInChildren<SpriteRenderer>()[0].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[2].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[4].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[3].enabled = false;
+
+            this.GetComponentsInChildren<SpriteRenderer>()[1].enabled = true;
+        }
+    }
     
 
 
