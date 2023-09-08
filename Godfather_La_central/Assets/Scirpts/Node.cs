@@ -58,6 +58,7 @@ public class Node : MonoBehaviour
                 {
                     sucess = true;
                     nbBras = 0;
+                    GameManager.instance.sequence++;
                     //gameManager.cameraSwitch.CameraState += 1;
                     //gameManager.cameraSwitch.DoCameraMoves();
                 }
