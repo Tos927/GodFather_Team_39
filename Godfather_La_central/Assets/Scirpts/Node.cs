@@ -117,7 +117,7 @@ public class Node : MonoBehaviour
                     gotPressed = true;
                     if (canPerfect())
                     {
-                        print("YA/GO/IT");
+                        print("PERFECT");
                         gameManager.NodeHitPerfect();
                     }
                     else
@@ -163,7 +163,7 @@ public class Node : MonoBehaviour
         }
 
 
-            print("sequence " + sequence);
+            //print("sequence " + sequence);
             sequencing();
         }
             
@@ -215,7 +215,7 @@ public class Node : MonoBehaviour
 
     public bool AreInputsExacts()
     {
-        print(inputs + " // " + gameManager.actionList[gameManager.InputToGet].Input);
+        //print(inputs + " // " + gameManager.actionList[gameManager.InputToGet].Input);
         string str1 = "";
         string str2 = "";
         string str3 = "";
@@ -295,7 +295,7 @@ public class Node : MonoBehaviour
         //Debug.Log("out");
         if (collision.gameObject.tag == "zone")
         {
-                print(collision.gameObject.name);
+                //print(collision.gameObject.name);
                 canBePressed = false;
                 nbBras++;
                 gotPressed = false;

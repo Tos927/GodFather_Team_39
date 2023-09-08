@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -43,23 +44,32 @@ public class GameManager : MonoBehaviour
     public int ComboCredits = 6; //48 3*4*4 // 4 cycles 
     public bool IsInComboCredits = false;
 
-    public Blackboard Blackboard;
+    public List<Blackboard> Blackboards;
     public List<Blackboard.Action> actionList = new List<Blackboard.Action>();
     public int InputToGet = 0;
 
-    public int AddInputToGet()
+    public int AddInputToGet(int i)
     {
-        return InputToGet++;
+        InputToGet += i;
+        foreach(Blackboard b in Blackboards)
+        {
+            b.DecodeInputs(actionList[InputToGet].inputs);
+        }
+        return InputToGet;
     }
     public int SetInputToGet(int i)
     {
+        foreach (Blackboard b in Blackboards)
+        {
+            b.DecodeInputs(actionList[i].inputs);
+        }
         return InputToGet = i;
     }
 
     private void Start()
     {
-        Blackboard = FindObjectOfType<Blackboard>();
-        actionList = Blackboard.actionList;
+        Blackboards = FindObjectsOfType<Blackboard>().ToList();
+        actionList = Blackboards[0].actionList;
         instance = this;
     }
     // Update is called once per frame

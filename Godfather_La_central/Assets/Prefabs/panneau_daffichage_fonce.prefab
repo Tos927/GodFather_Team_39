@@ -221,32 +221,24 @@ MonoBehaviour:
     inputs: 0200000005000000
   - Input: LGBLDH
     inputs: 0300000004000000
-  - Input: LGBLDH
-    inputs: 0300000004000000
-  - Input: LGBLDH
-    inputs: 0300000004000000
-  - Input: LGBLDH
-    inputs: 0300000004000000
-  - Input: LGBLDH
-    inputs: 0300000004000000
-  - Input: LGBLDH
-    inputs: 0300000004000000
-  - Input: LGBLDH
-    inputs: 0300000004000000
-  - Input: LGBLDH
-    inputs: 0300000004000000
-  - Input: LGBLDH
-    inputs: 0300000004000000
-  - Input: LGBLDH
-    inputs: 0300000004000000
-  - Input: LGBLDH
-    inputs: 0300000004000000
-  - Input: LGBLDH
-    inputs: 0300000004000000
-  - Input: LGBLDH
-    inputs: 0300000004000000
-  - Input: LGBLDH
-    inputs: 0300000004000000
+  - Input: LGBB04B05
+    inputs: 03000000090000000a000000
+  - Input: B01B03B05
+    inputs: 06000000080000000a000000
+  - Input: LDBB02B03
+    inputs: 050000000700000008000000
+  - Input: LGHB06B03
+    inputs: 020000000b00000008000000
+  - Input: B02B05
+    inputs: 070000000a000000
+  - Input: LDBB01B04
+    inputs: 050000000600000009000000
+  - Input: LGBLDB
+    inputs: 0300000005000000
+  - Input: LGHB05
+    inputs: 030000000a000000
+  - Input: B02B03
+    inputs: 0700000008000000
 --- !u!1 &4076291535666087657
 GameObject:
   m_ObjectHideFlags: 0

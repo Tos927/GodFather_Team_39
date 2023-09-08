@@ -22,8 +22,7 @@ public class SubNode : MonoBehaviour
     {
         if (collision.gameObject.tag == "pixel")
         {
-            gameManager.AddInputToGet();
-            gameManager.Blackboard.DecodeInputs(gameManager.actionList[gameManager.InputToGet].inputs);
+            gameManager.AddInputToGet(1);
 
             isPerfect = false;
 

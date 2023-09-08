@@ -698,6 +698,7 @@ MonoBehaviour:
   tempo: 45
   beat: 0
   spawnPoint: {fileID: 692725814}
+  spawnPoints: []
   caissePrefabs: {fileID: 3613186422585697547, guid: cf40f61c65c39ac409310406370f804e, type: 3}
   caisseObject: {fileID: 0}
   _timeFromStart: 0
@@ -1497,114 +1498,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1004761919}
     m_Modifications:
-    - target: {fileID: 2800191926249930202, guid: 8d86fe7ad076d6b42959c2e5a1a9a40d, type: 3}
-      propertyPath: actionList.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2800191926249930202, guid: 8d86fe7ad076d6b42959c2e5a1a9a40d, type: 3}
-      propertyPath: actionList.Array.data[0].Input
-      value: VHGLDB
-      objectReference: {fileID: 0}
-    - target: {fileID: 2800191926249930202, guid: 8d86fe7ad076d6b42959c2e5a1a9a40d, type: 3}
-      propertyPath: actionList.Array.data[1].Input
-      value: B01B02
-      objectReference: {fileID: 0}
-    - target: {fileID: 2800191926249930202, guid: 8d86fe7ad076d6b42959c2e5a1a9a40d, type: 3}
-      propertyPath: actionList.Array.data[2].Input
-      value: B01B02
-      objectReference: {fileID: 0}
-    - target: {fileID: 2800191926249930202, guid: 8d86fe7ad076d6b42959c2e5a1a9a40d, type: 3}
-      propertyPath: actionList.Array.data[3].Input
-      value: B01B02
-      objectReference: {fileID: 0}
-    - target: {fileID: 2800191926249930202, guid: 8d86fe7ad076d6b42959c2e5a1a9a40d, type: 3}
-      propertyPath: actionList.Array.data[4].Input
-      value: B01B02
-      objectReference: {fileID: 0}
-    - target: {fileID: 2800191926249930202, guid: 8d86fe7ad076d6b42959c2e5a1a9a40d, type: 3}
-      propertyPath: actionList.Array.data[5].Input
-      value: B01B02
-      objectReference: {fileID: 0}
-    - target: {fileID: 2800191926249930202, guid: 8d86fe7ad076d6b42959c2e5a1a9a40d, type: 3}
-      propertyPath: actionList.Array.data[6].Input
-      value: LGHLDB
-      objectReference: {fileID: 0}
-    - target: {fileID: 2800191926249930202, guid: 8d86fe7ad076d6b42959c2e5a1a9a40d, type: 3}
-      propertyPath: actionList.Array.data[7].Input
-      value: B01B02
-      objectReference: {fileID: 0}
-    - target: {fileID: 2800191926249930202, guid: 8d86fe7ad076d6b42959c2e5a1a9a40d, type: 3}
-      propertyPath: actionList.Array.data[8].Input
-      value: B01B02
-      objectReference: {fileID: 0}
-    - target: {fileID: 2800191926249930202, guid: 8d86fe7ad076d6b42959c2e5a1a9a40d, type: 3}
-      propertyPath: actionList.Array.data[0].inputs.Array.data[0]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2800191926249930202, guid: 8d86fe7ad076d6b42959c2e5a1a9a40d, type: 3}
-      propertyPath: actionList.Array.data[1].inputs.Array.data[0]
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2800191926249930202, guid: 8d86fe7ad076d6b42959c2e5a1a9a40d, type: 3}
-      propertyPath: actionList.Array.data[1].inputs.Array.data[1]
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2800191926249930202, guid: 8d86fe7ad076d6b42959c2e5a1a9a40d, type: 3}
-      propertyPath: actionList.Array.data[2].inputs.Array.data[0]
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2800191926249930202, guid: 8d86fe7ad076d6b42959c2e5a1a9a40d, type: 3}
-      propertyPath: actionList.Array.data[2].inputs.Array.data[1]
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2800191926249930202, guid: 8d86fe7ad076d6b42959c2e5a1a9a40d, type: 3}
-      propertyPath: actionList.Array.data[3].inputs.Array.data[0]
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2800191926249930202, guid: 8d86fe7ad076d6b42959c2e5a1a9a40d, type: 3}
-      propertyPath: actionList.Array.data[3].inputs.Array.data[1]
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2800191926249930202, guid: 8d86fe7ad076d6b42959c2e5a1a9a40d, type: 3}
-      propertyPath: actionList.Array.data[4].inputs.Array.data[0]
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2800191926249930202, guid: 8d86fe7ad076d6b42959c2e5a1a9a40d, type: 3}
-      propertyPath: actionList.Array.data[4].inputs.Array.data[1]
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2800191926249930202, guid: 8d86fe7ad076d6b42959c2e5a1a9a40d, type: 3}
-      propertyPath: actionList.Array.data[5].inputs.Array.data[0]
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2800191926249930202, guid: 8d86fe7ad076d6b42959c2e5a1a9a40d, type: 3}
-      propertyPath: actionList.Array.data[5].inputs.Array.data[1]
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2800191926249930202, guid: 8d86fe7ad076d6b42959c2e5a1a9a40d, type: 3}
-      propertyPath: actionList.Array.data[6].inputs.Array.data[0]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2800191926249930202, guid: 8d86fe7ad076d6b42959c2e5a1a9a40d, type: 3}
-      propertyPath: actionList.Array.data[6].inputs.Array.data[1]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2800191926249930202, guid: 8d86fe7ad076d6b42959c2e5a1a9a40d, type: 3}
-      propertyPath: actionList.Array.data[7].inputs.Array.data[0]
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2800191926249930202, guid: 8d86fe7ad076d6b42959c2e5a1a9a40d, type: 3}
-      propertyPath: actionList.Array.data[7].inputs.Array.data[1]
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2800191926249930202, guid: 8d86fe7ad076d6b42959c2e5a1a9a40d, type: 3}
-      propertyPath: actionList.Array.data[8].inputs.Array.data[0]
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2800191926249930202, guid: 8d86fe7ad076d6b42959c2e5a1a9a40d, type: 3}
-      propertyPath: actionList.Array.data[8].inputs.Array.data[1]
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 3866739284722975605, guid: 8d86fe7ad076d6b42959c2e5a1a9a40d, type: 3}
       propertyPath: m_Name
       value: panneau_daffichage_fonce (1)
