@@ -99,7 +99,14 @@ public class CameraSwitch : MonoBehaviour
     }
     public void DoCameraMoves()
     {
-        StartCoroutine(GoTo(cameraPoses[GameManager.instance.sequence].position));
+        if(GameManager.instance.sequence>=4)
+        {
+            StartCoroutine(GoTo(cameraPoses[0].position));
+            GameManager.instance.sequence = 0;
+
+        }
+        else
+            StartCoroutine(GoTo(cameraPoses[GameManager.instance.sequence].position));
     }
 
     public IEnumerator ZoomInAndOut()

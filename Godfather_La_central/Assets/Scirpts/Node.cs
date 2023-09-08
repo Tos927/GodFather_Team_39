@@ -145,51 +145,72 @@ public class Node : MonoBehaviour
                         //gameManager.cameraSwitch.DoCameraMoves();
                     }
                 }
-            }
+                else
+                {
+                    gameManager.NodeHit();
+                }
+                if (nbcaisse == 3)
+                {
+                    sucess = true;
+                    nbcaisse = 0;
+                    GameManager.instance.sequence++;
+                    sequence = GameManager.instance.sequence;
+                    /*gameManager.cameraSwitch.CameraState += 1;
+                    gameManager.cameraSwitch.DoCameraMoves();*/
+                }
 
             this.GetComponentsInChildren<SpriteRenderer>()[4].enabled = true;
         }
 
 
             print("sequence " + sequence);
-            if (sequence == 1)
-            {
-                this.GetComponentsInChildren<SpriteRenderer>()[0].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[2].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[4].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[3].enabled = false;
-            }
-            else if(sequence == 2) 
-            {
-                this.GetComponentsInChildren<SpriteRenderer>()[0].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[2].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[4].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[3].enabled = false;
+            sequencing();
+        }
+            
+    }
 
-                this.GetComponentsInChildren<SpriteRenderer>()[3].enabled = true;
-            }
-            else if (sequence == 3)
-            {
-                this.GetComponentsInChildren<SpriteRenderer>()[0].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[2].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[4].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[3].enabled = false;
+    public void sequencing()
+    {
+        if (sequence == 1)
+        {
+            this.GetComponentsInChildren<SpriteRenderer>()[0].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[2].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[4].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[3].enabled = false;
 
-                this.GetComponentsInChildren<SpriteRenderer>()[2].enabled = true;
-            }
-            else if (sequence == 4)
-            {
-                this.GetComponentsInChildren<SpriteRenderer>()[0].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[2].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[4].enabled = false;
-                this.GetComponentsInChildren<SpriteRenderer>()[3].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[4].enabled = true;
+        }
+        else if (sequence == 2)
+        {
+            this.GetComponentsInChildren<SpriteRenderer>()[0].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[2].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[4].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[3].enabled = false;
 
-                this.GetComponentsInChildren<SpriteRenderer>()[1].enabled = true;
-            }
+            this.GetComponentsInChildren<SpriteRenderer>()[3].enabled = true;
+        }
+        else if (sequence == 3)
+        {
+            this.GetComponentsInChildren<SpriteRenderer>()[0].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[2].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[4].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[3].enabled = false;
+
+            this.GetComponentsInChildren<SpriteRenderer>()[2].enabled = true;
+        }
+        else if (sequence == 4)
+        {
+            this.GetComponentsInChildren<SpriteRenderer>()[0].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[2].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[4].enabled = false;
+            this.GetComponentsInChildren<SpriteRenderer>()[3].enabled = false;
+
+            this.GetComponentsInChildren<SpriteRenderer>()[1].enabled = true;
+        }
     }
 
     public bool AreInputsExacts()
