@@ -50,7 +50,11 @@ public class GameManager : MonoBehaviour
     public int AddInputToGet()
     {
         return InputToGet++;
-    } 
+    }
+    public int SetInputToGet(int i)
+    {
+        return InputToGet = i;
+    }
 
     private void Start()
     {

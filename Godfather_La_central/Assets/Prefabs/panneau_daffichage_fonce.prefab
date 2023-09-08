@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6315619883944663208}
   - component: {fileID: 6371178246254863624}
-  - component: {fileID: 1396025496487368721}
+  - component: {fileID: 2800191926249930202}
   m_Layer: 0
   m_Name: panneau_daffichage_fonce
   m_TagString: Untagged
@@ -184,7 +184,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1396025496487368721
+--- !u!114 &2800191926249930202
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,11 +213,40 @@ MonoBehaviour:
   - {fileID: 7541005009847943139}
   - {fileID: 3763510691553032558}
   - {fileID: 4076291535666087657}
-  timeToSwap: 0.3
+  timeToSwap: 1000
   actionList:
-  - inputs: 0300000005000000
-  - inputs: 030000000500000006000000
-  - inputs: 04000000
+  - Input: LGBLDB
+    inputs: 0300000005000000
+  - Input: LGHLDB
+    inputs: 0200000005000000
+  - Input: LGBLDH
+    inputs: 0300000004000000
+  - Input: LGBLDH
+    inputs: 0300000004000000
+  - Input: LGBLDH
+    inputs: 0300000004000000
+  - Input: LGBLDH
+    inputs: 0300000004000000
+  - Input: LGBLDH
+    inputs: 0300000004000000
+  - Input: LGBLDH
+    inputs: 0300000004000000
+  - Input: LGBLDH
+    inputs: 0300000004000000
+  - Input: LGBLDH
+    inputs: 0300000004000000
+  - Input: LGBLDH
+    inputs: 0300000004000000
+  - Input: LGBLDH
+    inputs: 0300000004000000
+  - Input: LGBLDH
+    inputs: 0300000004000000
+  - Input: LGBLDH
+    inputs: 0300000004000000
+  - Input: LGBLDH
+    inputs: 0300000004000000
+  - Input: LGBLDH
+    inputs: 0300000004000000
 --- !u!1 &4076291535666087657
 GameObject:
   m_ObjectHideFlags: 0

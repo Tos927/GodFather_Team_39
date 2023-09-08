@@ -9,7 +9,7 @@ public class Blackboard : MonoBehaviour
     private List<GameObject> SpritesToLit = new List<GameObject>();
 
     private Coroutine lastCoroutine;
-    public float timeToSwap = .1f;
+    public float timeToSwap = .10f;
 
     public List<Action> actionList = new List<Action>();
 
@@ -18,6 +18,7 @@ public class Blackboard : MonoBehaviour
     [System.Serializable]
     public struct Action
     {
+        public string Input;
         public List<LALIST> inputs;
     }
 
